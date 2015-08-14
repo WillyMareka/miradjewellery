@@ -27,9 +27,18 @@ class Welcome extends CI_Controller {
 
     }
     public function shopping_cart(){
-
+         if($this->session->userdata('is_logged_in')){
+          
     	$this->load->view('shopping_cart');
+
+         }else{
+         	redirect('welcome/restricted');
+         }
     }
+    public function restricted(){
+         
+    	$this->load->view('restricted');
+}
     public function login_validation(){
 
 
@@ -38,6 +47,13 @@ class Welcome extends CI_Controller {
     	$this ->form_validation->set_rules('password','Password','required|md5|trim');
     
       if($this->form_validation->run()){
+           $data =array(
+                       'email' => $this->input->post('email'),
+                        'is_logged_in' => 1
+               
+            	);
+
+      	$this->form_validation->set_userdata($data);
       	  redirect('welcome/shopping_cart');
       }else{
 
@@ -55,6 +71,11 @@ class Welcome extends CI_Controller {
          	$this->form_validation->set_message('validate_credentials', 'Incorrect user name or password');
             return false;
          }
+    }
+    public function logout(){
+
+    	$this->session->sess_destroy();
+    	redirect('welcome/login');
     }
 }
 

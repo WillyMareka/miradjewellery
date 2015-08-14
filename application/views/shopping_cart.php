@@ -10,7 +10,14 @@
 
 <div id="container">
 	<h1>Shopping Cart</h1>
-    
+    <?php
+         echo  "<pre>" 
+         print_r( $this->session->all_userdata());
+         echo  "</pre>"
+
+
+    ?>
+    <a href='<?php echo base_url()."welcome/logout" ?>'>logout</a>
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
 </div>
 
