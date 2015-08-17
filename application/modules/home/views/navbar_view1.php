@@ -9,7 +9,7 @@
              
              <ul class= "right hide-on-med-and-down">
                 <li><a href='<?php echo base_url()."welcome/login" ?>'><i class="material-icons right">lock_open</i>Log In</a></li>
-                <li><a href="registration_1.php"><i class="material-icons right">supervisor_account</i>Sign Up</a></li>
+                <li><a href='<?php echo base_url()."welcome/sign_up" ?>'><i class="material-icons right">supervisor_account</i>Sign Up</a></li>
                 <li><a href=""><i class="material-icons right">shopping_basket</i>WishList</a></li>
                 <li><a href=""><i class="material-icons right">shopping_cart</i>Shopping Bag </a></li>
                 

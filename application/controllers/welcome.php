@@ -77,6 +77,44 @@ class Welcome extends CI_Controller {
     	$this->session->sess_destroy();
     	redirect('welcome/login');
     }
+    public function sign_up(){
+         
+    	$this->load->view('sign_up');
+}
+     public function signup_validation(){
+         
+         $this->load->library('form_validation');
+         $this ->form_validation->set_rules('email','Email','required|trim|valid_email|is_unique[customers.cust_email]');
+         $this ->form_validation->set_rules('password','Password','required|md5|trim');
+         $this ->form_validation->set_rules('cpassword','Confirm Password','required|md5|trim|matches[password]');
+         //$this->form_validation->set_message('is_unique', 'Email Already Exists');
+ if($this->form_validation->run()){
+       $key = md5(uniqid());
+       $this->load->library('email', array('mailtype'=>'html'));
+      
+       $this->email->from(''.'');
+       $this->email->to($this->input->post('email'));
+       $this->email->subject("Confirm your account");
+       $message = "<p>Thank you for signing up </p>";
+       $message .= "<p><a href='".baseurl()."main/register_user/key'>click here </a> to confirm your account</p>";
+       $this->email->message($message);
+      
+
+       if( $this->email->send()){
+
+            echo 'This email has been sent';
+       }
+       else{
+       	   echo "failed";
+       }
+       //$this->model_users->set_active($key);
+
+ }else{
+ 	 echo "Error";
+ 	       	 $this->load->view('sign_up');
+
+ }
+     }
 }
 
 /* End of file welcome.php */
