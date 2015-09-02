@@ -13,8 +13,8 @@ $(function(){
           
          $.ajax({
            type: "POST",
-           url: base_url + 'admin/validate_member',
-            //url: base_url + 'index.php/admin/validate_member',
+           //url: base_url + 'admin/validate_member',
+            url: base_url + 'index.php/admin/validate_member',
            data: formData,
            async: false,
            cache: false,
@@ -22,20 +22,21 @@ $(function(){
            processData: false,
            dataType: "json",
            success: function(response){
-               	   //alert(response.state);
+               	   console.log(response);
                if(response.state === "error"){
-               	   //alert(response.message);
+               	   
                    swal({   title: response.subject,   text: response.message,   timer: 3000 });
+
                }else if(response.state === "success"){
                  if(response.level === "superadmin"){
-                   // window.location.href = 'superadmin/dashboard' ;
-                   window.location.href = 'index.php/superadmin/dashboard' ;
+                   
+                   window.location.href = 'superadmin/dashboard' ;
                  }else if(response.level === "manager"){
-                   // window.location.href = 'admin/dashboard' ;
-                   window.location.href = 'index.php/admin/dashboard' ;
+                   
+                   window.location.href = 'admin/dashboard' ;
                  }else if(response.level === "stockmanager"){
-                   // window.location.href = 'stockmanager/dashboard' ;
-                   window.location.href = 'index.php/stockmanager/dashboard' ;
+                   
+                   window.location.href = 'stockmanager/dashboard' ;
                  }
                }
               

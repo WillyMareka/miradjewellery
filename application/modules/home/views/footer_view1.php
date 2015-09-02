@@ -20,12 +20,14 @@
 		</div>
 		<div class="four columns" style="height:100%;">
 			<h6 style="color:white;" >MIRAD EMAIL NEWSLETTER</h6>
+
 			<form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-            <input type="text" class="form-control" placeholder="Email address">
-            </div>
-            <button type="submit" class="btn btn-default">Subscribe</button>
+               <div class="form-group">
+                 <input type="text" class="form-control" placeholder="Email address">
+               </div>
+               <button type="submit" class="btn btn-default">Subscribe</button>
             </form>
+            
 			<ul class="list-unstyled">
 			<h5>You can also follow us on:</h5>
 			<!-- <li><a href=""><img src="<?php echo base_url().'assets/images/Fb.png'?>"></a></li>

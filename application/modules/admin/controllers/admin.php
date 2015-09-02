@@ -55,7 +55,7 @@ class Admin extends MY_Controller {
         $log = $this->admin_model->logoutuser($sess_log);
 
         $this->session->sess_destroy();
-        redirect(base_url().'admin');
+        redirect(base_url().'index.php/admin');
         //redirect(base_url().'index.php/admin');
     }
 
@@ -196,6 +196,8 @@ class Admin extends MY_Controller {
                           'subject' => 'Log Success',
                           'message'=> 'Logged in successfully'
                           ));
+
+                          //redirect(base_url().'index.php/stockmanager/dashboard');
                           
                         break;
 
@@ -208,6 +210,8 @@ class Admin extends MY_Controller {
                           'subject' => 'Log Success',
                           'message'=> 'Logged in successfully'
                         ));
+
+                        //$this->dashboard();
                         break;
 
                         // Level 3 Stock Manager
@@ -219,6 +223,8 @@ class Admin extends MY_Controller {
                           'subject' => 'Log Success',
                           'message'=> 'Logged in successfully'
                           ));
+
+                          // redirect(base_url().'index.php/stockmanager/dashboard');
                           
                         break;
                     }

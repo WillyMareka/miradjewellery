@@ -13,7 +13,8 @@
 
 
     <link rel="icon" type="image/x-icon" href="<?php echo base_url().'assets/fonts/jewel.ico'?>" />
-    <link href="<?php echo base_url(). 'assets/fonts/font-awesome/css/font-awesome.min.css'?>" rel="stylesheet" type="text/css">
+    <!-- <link href="<?php echo base_url(). 'assets/fonts/font-awesome/css/font-awesome.min.css'?>" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/js/jquery-ui-1.11.4.custom/jquery-ui.min.css'?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/validationEngine.jquery.css'?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/sweetalert/lib/sweet-alert.css'?>">

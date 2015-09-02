@@ -29,6 +29,7 @@ class Admin_model extends MY_Model {
           `products` 
         WHERE
         product_status = 1";
+        
       $result=$this->db->query($sql);
       return $result->result_array();
     }
