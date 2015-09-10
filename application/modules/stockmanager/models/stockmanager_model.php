@@ -398,7 +398,7 @@ class Stockmanager_model extends MY_Model {
   {
     $sql = "SELECT 
           comm_id as 'Comment ID',
-          comm_email as 'Comment Subject',
+          comm_subject as 'Comment Subject',
           comm_message as 'Comment Message',
           comm_status as 'Comment Status',
           date_sent as 'Date Sent'
@@ -415,7 +415,7 @@ class Stockmanager_model extends MY_Model {
   {
     $sql = "SELECT 
           comm_id as 'Comment ID',
-          comm_email as 'Comment Subject',
+          comm_subject as 'Comment Subject',
           comm_message as 'Comment Message',
           comm_status as 'Comment Status',
           date_sent as 'Date Sent'

@@ -402,7 +402,7 @@ class Admin_model extends MY_Model {
     function get_all_comments() {
         $sql = "SELECT 
           comm_id as 'Comment ID',
-          comm_email as 'Comment Subject',
+          comm_subject as 'Comment Subject',
           comm_message as 'Comment Message',
           comm_status as 'Comment Status',
           date_sent as 'Date Sent'
@@ -417,7 +417,7 @@ class Admin_model extends MY_Model {
     function get_all_dcomments() {
         $sql = "SELECT 
           comm_id as 'Comment ID',
-          comm_email as 'Comment Subject',
+          comm_subject as 'Comment Subject',
           comm_message as 'Comment Message',
           comm_status as 'Comment Status',
           date_sent as 'Date Sent'

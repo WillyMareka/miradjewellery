@@ -64,6 +64,11 @@
                             </div>
 
                             <div class="form-group">
+                                <label>SubTotal</label>
+                                <input id="editorderprice" name="editorderprice" disabled required type="email" value="<?php echo $data['subtotal']; ?>"class="form-control validate[required, custom[email]]">
+                            </div>
+
+                            <div class="form-group">
                                 <label>Customer ID</label>
                                 <input id="editordercustid" name="editordercustid" disabled required type="email" value="<?php echo $data['cust_id']; ?>"class="form-control validate[required, custom[email]]">
                             </div>

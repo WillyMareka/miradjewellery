@@ -373,6 +373,40 @@ class Admin extends MY_Controller {
         $this->template->call_admin_template($data);
     }
 
+    function orderdetail($id)
+    {
+       $this->log_check();
+        $userdet = array();
+
+        
+        $results = $this->admin_model->orderprofile($id);
+
+        foreach ($results as $key => $values) {
+            $details['orders'][] = $values;  
+        }
+        
+        
+        $data['orderdetails'] = $details;
+
+
+        $data['dclientnumber'] = $this->getdclientnumber();
+        $data['dcategorynumber'] = $this->getdcategorynumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
+        $data['dproductnumber'] = $this->getdproductnumber();
+
+        $data['admin_title'] = 'Manager';
+        $data['admin_subtitle'] = 'Order';
+        $data['admin_navbar'] = 'admin/header';
+        $data['admin_sidebar'] = 'admin/sidebar';
+        $data['admin_content'] = 'admin/view_order';
+        $data['admin_footer'] = 'admin/footer';
+
+        $data['all_orders'] = $this->allorders('active','table');
+        
+        
+        $this->template->call_admin_template($data);
+    }
+
      function comments()
     {
         $this->log_check();
@@ -623,7 +657,7 @@ class Admin extends MY_Controller {
                 $display .= '<td class="centered">'.$state.'</td>';
 
                 //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'admin/viewclient/'.$data['Customer ID'].'"><i class="fa fa-eye black"></i></a></td>';
-                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/viewclient/'.$data['Customer ID'].'"><i class="fa fa-eye black"></i></a></td>';
+                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/clientdetail/'.$data['Customer ID'].'"><i class="fa fa-eye black"></i></a></td>';
            
                         //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'admin/clientupdate/clientdelete/'.$data['Customer ID'].'"><i class="fa fa-trash black"></i></td>';
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/admin/clientupdate/clientdelete/'.$data['Customer ID'].'"><i class="fa fa-trash black"></i></td>';
@@ -634,7 +668,7 @@ class Admin extends MY_Controller {
             
             case 'excel':
                
-                 array_push($row_data, array($data['Customer ID'], $data['Customer Title'], $data['Customer Name'], $data['Customer Email'], $data['Date Registered'], $states)); 
+                 array_push($row_data, array($data['Customer ID'], $data['Customer Title'], $data['Customer Name'], $data['Customer Email'], $date, $states)); 
 
                 break;
 
@@ -647,7 +681,7 @@ class Admin extends MY_Controller {
                 $html_body .= '<td>'.$data['Customer Title'].'</td>';
                 $html_body .= '<td>'.$data['Customer Name'].'</td>';
                 $html_body .= '<td>'.$data['Customer Email'].'</td>';
-                $html_body .= '<td>'.$data['Date Registered'].'</td>';
+                $html_body .= '<td>'.$date.'</td>';
                 $html_body .= '<td>'.$states.'</td>';
                 $html_body .= "</tr></ol>";
 
@@ -757,7 +791,7 @@ class Admin extends MY_Controller {
                 $display .= '<td class="centered">'.$data['Date Ordered'].'</td>';
 
                 //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'admin/vieworder/'.$data['Order ID'].'"><i class="fa fa-eye black"></i></a></td>';
-                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/vieworder/'.$data['Order ID'].'"><i class="fa fa-eye black"></i></a></td>';
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/orderdetail/'.$data['Order ID'].'"><i class="fa fa-eye black"></i></a></td>';
               
                        // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Click if Delivered" href = "'.base_url().'admin/orderupdate/orderdelete/'.$data['Order ID'].'"><i class="fa fa-truck black"></i></td>';
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Click if Delivered" href = "'.base_url().'index.php/admin/orderupdate/orderdelete/'.$data['Order ID'].'"><i class="fa fa-truck black"></i></td>';
@@ -880,7 +914,7 @@ class Admin extends MY_Controller {
                 $display .= '<td class="centered">'.$data['Date Sent'].'</td>';
 
                 //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'admin/viewcomment/'.$data['Comment ID'].'"><i class="fa fa-eye black"></i></a></td>';
-                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/viewcomment/'.$data['Comment ID'].'"><i class="fa fa-eye black"></i></a></td>';
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/commentdetail/'.$data['Comment ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 
                          //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'admin/commentupdate/commentdelete/'.$data['Comment ID'].'"><i class="fa fa-trash black"></i></td>';
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/admin/commentupdate/commentdelete/'.$data['Comment ID'].'"><i class="fa fa-trash black"></i></td>';
@@ -1005,7 +1039,7 @@ class Admin extends MY_Controller {
                 $display .= '<td class="centered">'.$state.'</td>';
 
                 //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'admin/viewcategory/'.$data['Category ID'].'"><i class="fa fa-eye black"></i></a></td>';
-                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/viewcategory/'.$data['Category ID'].'"><i class="fa fa-eye black"></i></a></td>';
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/categorydetail/'.$data['Category ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 
                         //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'admin/catupdate/catdelete/'.$data['Category ID'].'"><i class="fa fa-trash black"></i></td>';
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/admin/catupdate/catdelete/'.$data['Category ID'].'"><i class="fa fa-trash black"></i></td>';
@@ -1149,7 +1183,7 @@ class Admin extends MY_Controller {
 
 
                 //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'admin/viewemployee/'.$data['Employee ID'].'"><i class="fa fa-eye black"></i></a></td>';
-                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/viewemployee/'.$data['Employee ID'].'"><i class="fa fa-eye black"></i></a></td>';
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/employeedetail/'.$data['Employee ID'].'"><i class="fa fa-eye black"></i></a></td>';
               
                        //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'admin/empupdate/empdelete/'.$data['Employee ID'].'"><i class="fa fa-trash black"></i></td>';
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/admin/empupdate/empdelete/'.$data['Employee ID'].'"><i class="fa fa-trash black"></i></td>';
@@ -1161,7 +1195,7 @@ class Admin extends MY_Controller {
             
             case 'excel':
                
-                 array_push($row_data, array($data['Employee ID'], $data['Employee Name'], $data['Employee Email'], $level, $data['Date Registered'], $states)); 
+                 array_push($row_data, array($data['Employee ID'], $data['Employee Name'], $data['Employee Email'], $level, $date, $states)); 
 
                 break;
 
@@ -1174,7 +1208,7 @@ class Admin extends MY_Controller {
                 $html_body .= '<td>'.$data['Employee Name'].'</td>';
                 $html_body .= '<td>'.$data['Employee Email'].'</td>';
                 $html_body .= '<td>'.$level.'</td>';
-                $html_body .= '<td>'.$data['Date Registered'].'</td>';
+                $html_body .= '<td>'.$date.'</td>';
                 $html_body .= '<td>'.$states.'</td>';
                 $html_body .= "</tr></ol>";
 
@@ -1358,6 +1392,40 @@ class Admin extends MY_Controller {
         
     }
 
+     function categorydetail($id)
+    {
+        $this->log_check();
+        $userdet = array();
+
+        // uses the id to acquire details from the admin_model.php in a function called categoryprofile() with the id as the parameter
+        $results = $this->admin_model->categoryprofile($id);
+
+        foreach ($results as $key => $values) {
+            $details['category'][] = $values;  
+        }
+
+        
+        $data['categorydetails'] = $details;//uses result from the foreach above to and passes it into key -> categorydetails to be used as reference
+
+
+        $data['dclientnumber'] = $this->getdclientnumber();
+        $data['dcategorynumber'] = $this->getdcategorynumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
+        $data['dproductnumber'] = $this->getdproductnumber();
+
+        $data['admin_title'] = 'Manager';
+        $data['admin_subtitle'] = 'View Category';
+        $data['admin_navbar'] = 'admin/header';//header.php file
+        $data['admin_sidebar'] = 'admin/sidebar';//sidebar.php file
+        $data['admin_content'] = 'admin/view_category';//viewcategory.php file
+        $data['admin_footer'] = 'admin/footer';//footer.php file
+
+        
+        
+        $this->template->call_admin_template($data);
+ 
+    }
+
 
     // function that passes the id to be viewed and displays it in the viewcategory file
     function viewcategory($id)
@@ -1394,6 +1462,41 @@ class Admin extends MY_Controller {
  
     }
 
+
+    function employeedetail($id)
+    {
+        $this->log_check();
+        $userdet = array();
+
+        
+        $results = $this->admin_model->administratorprofile($id);
+
+        foreach ($results as $key => $values) {
+            $details['employees'][] = $values;  
+        }
+        
+        
+        $data['employeedetails'] = $details;
+
+
+
+        $data['dclientnumber'] = $this->getdclientnumber();
+        $data['dcategorynumber'] = $this->getdcategorynumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
+        $data['dproductnumber'] = $this->getdproductnumber();
+
+        $data['admin_title'] = 'Manager';
+        $data['admin_subtitle'] = 'View Employee';
+        $data['admin_navbar'] = 'admin/header';
+        $data['admin_sidebar'] = 'admin/sidebar';
+        $data['admin_content'] = 'admin/view_administrator';
+        $data['admin_footer'] = 'admin/footer';
+
+        
+        
+        $this->template->call_admin_template($data);
+ 
+    }
 
     function viewemployee($id)
     {
@@ -1464,6 +1567,40 @@ class Admin extends MY_Controller {
  
     }
 
+    function commentdetail($id)
+    {
+        $this->log_check();
+        $userdet = array();
+
+        
+        $results = $this->admin_model->commentprofile($id);
+
+        foreach ($results as $key => $values) {
+            $details['comments'][] = $values;  
+        }
+        
+        
+        $data['commentdetails'] = $details;
+
+        $data['dclientnumber'] = $this->getdclientnumber();
+        $data['dcategorynumber'] = $this->getdcategorynumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
+        $data['dproductnumber'] = $this->getdproductnumber();
+
+
+        $data['admin_title'] = 'Manager';
+        $data['admin_subtitle'] = 'View Comment';
+        $data['admin_navbar'] = 'admin/header';
+        $data['admin_sidebar'] = 'admin/sidebar';
+        $data['admin_content'] = 'admin/view_comment';
+        $data['admin_footer'] = 'admin/footer';
+
+        
+        
+        $this->template->call_admin_template($data);
+ 
+    }
+
     function vieworder($id)
     {
         $this->log_check();
@@ -1490,6 +1627,40 @@ class Admin extends MY_Controller {
         $data['admin_navbar'] = 'admin/header';
         $data['admin_sidebar'] = 'admin/sidebar';
         $data['admin_content'] = 'admin/vieworder';
+        $data['admin_footer'] = 'admin/footer';
+
+        
+        
+        $this->template->call_admin_template($data);
+ 
+    }
+
+    function clientdetail($id)
+    {
+        $this->log_check();
+        $userdet = array();
+
+        
+        $results = $this->admin_model->clientprofile($id);
+
+        foreach ($results as $key => $values) {
+            $details['customers'][] = $values;  
+        }
+        
+        
+        $data['customerdetails'] = $details;
+
+        $data['dclientnumber'] = $this->getdclientnumber();
+        $data['dcategorynumber'] = $this->getdcategorynumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
+        $data['dproductnumber'] = $this->getdproductnumber();
+
+
+        $data['admin_title'] = 'Manager';
+        $data['admin_subtitle'] = 'View Client';
+        $data['admin_navbar'] = 'admin/header';
+        $data['admin_sidebar'] = 'admin/sidebar';
+        $data['admin_content'] = 'admin/view_clients';
         $data['admin_footer'] = 'admin/footer';
 
         
@@ -1791,7 +1962,7 @@ class Admin extends MY_Controller {
 
                 // button below used for viewing the specific category. Goes to admin controller into function called viewcategory(), passing the category id as parameter
                 // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'admin/viewproduct/'.$data['Product ID'].'"><i class="fa fa-eye black"></i></a></td>';
-                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/viewproduct/'.$data['Product ID'].'"><i class="fa fa-eye black"></i></a></td>';
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/productdetail/'.$data['Product ID'].'"><i class="fa fa-eye black"></i></a></td>';
           
                         // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'admin/product_status/proddelete/'.$data['Product ID'].'"><i class="fa fa-trash black"></i></td>';
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/admin/product_status/proddelete/'.$data['Product ID'].'"><i class="fa fa-trash black"></i></td>';
@@ -1931,6 +2102,33 @@ class Admin extends MY_Controller {
         $data['admin_navbar']='admin/header';
         $data['admin_sidebar']='admin/sidebar';
         $data['admin_content']='admin/v_product';
+        $data['admin_footer']='admin/footer';
+
+        //echo'<pre>';print_r($data);echo'</pre>';die();
+        $this->template->call_admin_template($data);
+    }
+
+    function productdetail($id)
+    {
+        $product_details=array();
+        $results=$this->admin_model->productprofile($id);
+
+        foreach ($results as $key => $values) {
+            $details['products'][] = $values;  
+        }
+        $data['productdetails'] = $details;
+
+
+        $data['dclientnumber'] = $this->getdclientnumber();
+        $data['dcategorynumber'] = $this->getdcategorynumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
+        $data['dproductnumber'] = $this->getdproductnumber();
+
+        $data['admin_title']='Manager';
+        $data['admin_subtitle']='View Product';
+        $data['admin_navbar']='admin/header';
+        $data['admin_sidebar']='admin/sidebar';
+        $data['admin_content']='admin/view_product';
         $data['admin_footer']='admin/footer';
 
         //echo'<pre>';print_r($data);echo'</pre>';die();

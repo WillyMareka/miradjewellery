@@ -71,6 +71,8 @@ class Stockmanager extends MY_Controller {
 
         if($passcheck == 'e10adc3949ba59abbe56e057f20f883e'){
             $passmessage = "Remember to change your password";
+        }else{
+            $passmessage = "";
         }
 
       
@@ -385,10 +387,11 @@ class Stockmanager extends MY_Controller {
                 $display .= '<td class="centered">'.$data['Product Price'].'</td>';
                 $display .= '<td class="centered">'.$data['Customer ID'].'</td>';
                 $display .= '<td class="centered">'.$state.'</td>';
-                $display .= '<td class="centered">'.$data['Date Ordered'].'</td>';
+                $date = date("d-m-Y",strtotime($data['Date Ordered']));
+                $display .= '<td class="centered">'.$date.'</td>';
 
                 // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'stockmanager/vieworder/'.$data['Order ID'].'"><i class="fa fa-eye black"></i></a></td>';
-                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/stockmanager/vieworder/'.$data['Order ID'].'"><i class="fa fa-eye black"></i></a></td>';
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/stockmanager/orderdetail/'.$data['Order ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 
                 // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Click if Delivered" href = "'.base_url().'stockmanager/orderupdate/orderdelete/'.$data['Order ID'].'"><i class="fa fa-truck black"></i></td>';
                 //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Click if Delivered" href = "'.base_url().'index.php/stockmanager/orderupdate/orderdelete/'.$data['Order ID'].'"><i class="fa fa-truck black"></i></td>';
@@ -398,7 +401,7 @@ class Stockmanager extends MY_Controller {
             
             case 'excel':
                
-                 array_push($row_data, array($data['Order ID'], $data['Order No'], $data['Product ID'], $data['Product Price'], $data['Customer ID'], $states, $data['Date Ordered'])); 
+                 array_push($row_data, array($data['Order ID'], $data['Order No'], $data['Product ID'], $data['Product Price'], $data['Customer ID'], $states, $date)); 
 
                 break;
 
@@ -413,7 +416,7 @@ class Stockmanager extends MY_Controller {
                 $html_body .= '<td>'.$data['Product Price'].'</td>';
                 $html_body .= '<td>'.$data['Customer ID'].'</td>';
                 $html_body .= '<td>'.$states.'</td>';
-                $html_body .= '<td>'.$data['Date Ordered'].'</td>';
+                $html_body .= '<td>'.$date.'</td>';
                 $html_body .= "</tr></ol>";
 
                 break;
@@ -507,10 +510,11 @@ class Stockmanager extends MY_Controller {
                 $display .= '<td class="centered">'.$count.'</td>';
                 $display .= '<td class="centered">'.$data['Comment Subject'].'</td>';
                 $display .= '<td class="centered">'.$data['Comment Message'].'</td>';
-                $display .= '<td class="centered">'.$data['Date Sent'].'</td>';
+                $date = date("d-m-Y",strtotime($data['Date Sent']));
+                $display .= '<td class="centered">'.$date.'</td>';
 
                 // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'stockmanager/viewcomment/'.$data['Comment ID'].'"><i class="fa fa-eye black"></i></a></td>';
-                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/stockmanager/viewcomment/'.$data['Comment ID'].'"><i class="fa fa-eye black"></i></a></td>';
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/stockmanager/commentdetail/'.$data['Comment ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 
                 // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'stockmanager/commentupdate/commentdelete/'.$data['Comment ID'].'"><i class="fa fa-trash black"></i></td>';
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/stockmanager/commentupdate/commentdelete/'.$data['Comment ID'].'"><i class="fa fa-trash black"></i></td>';
@@ -520,7 +524,7 @@ class Stockmanager extends MY_Controller {
             
             case 'excel':
                
-                 array_push($row_data, array($data['Comment ID'], $data['Comment Subject'], $data['Comment Message'], $data['Date Sent'])); 
+                 array_push($row_data, array($data['Comment ID'], $data['Comment Subject'], $data['Comment Message'], $date)); 
 
                 break;
 
@@ -532,7 +536,7 @@ class Stockmanager extends MY_Controller {
                 $html_body .= '<td>'.$data['Comment ID'].'</td>';
                 $html_body .= '<td>'.$data['Comment Subject'].'</td>';
                 $html_body .= '<td>'.$data['Comment Message'].'</td>';
-                $html_body .= '<td>'.$data['Date Sent'].'</td>';
+                $html_body .= '<td>'.$date.'</td>';
                 $html_body .= "</tr></ol>";
 
                 break;
@@ -634,7 +638,7 @@ class Stockmanager extends MY_Controller {
                 $display .= '<td class="centered">'.$state.'</td>';
 
                 // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'stockmanager/viewcategory/'.$data['Category ID'].'"><i class="fa fa-eye black"></i></a></td>';
-                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/stockmanager/viewcategory/'.$data['Category ID'].'"><i class="fa fa-eye black"></i></a></td>';
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/stockmanager/categorydetail/'.$data['Category ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 
                 // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'stockmanager/catupdate/catdelete/'.$data['Category ID'].'"><i class="fa fa-trash black"></i></td>';
                 //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/stockmanager/catupdate/catdelete/'.$data['Category ID'].'"><i class="fa fa-trash black"></i></td>';
@@ -739,12 +743,50 @@ class Stockmanager extends MY_Controller {
         
         $data['categorydetails'] = $details;//uses result from the foreach above to and passes it into key -> categorydetails to be used as reference
 
+        $data['dordernumber'] = $this->getdordernumber();
+        $data['dcategorynumber'] = $this->getdcategorynumber();
+        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dproductnumber'] = $this->getdproductnumber();
 
         $data['admin_title'] = 'Stock Manager';
         $data['admin_subtitle'] = 'View Category';
         $data['admin_navbar'] = 'stockmanager/header';//header.php file
         $data['admin_sidebar'] = 'stockmanager/sidebar';//sidebar.php file
         $data['admin_content'] = 'stockmanager/viewcategory';//viewcategory.php file
+        $data['admin_footer'] = 'stockmanager/footer';//footer.php file
+
+        
+        
+        $this->template->call_admin_template($data);
+ 
+    }
+
+    function categorydetail($id)
+    {
+        $this->log_check();
+        $userdet = array();
+
+        // uses the id to acquire details from the stockmanager_model.php in a function called categoryprofile() with the id as the parameter
+        $results = $this->stockmanager_model->categoryprofile($id);
+
+        foreach ($results as $key => $values) {
+            $details['category'][] = $values;  
+        }
+        
+        
+        $data['categorydetails'] = $details;//uses result from the foreach above to and passes it into key -> categorydetails to be used as reference
+
+
+        $data['dordernumber'] = $this->getdordernumber();
+        $data['dcategorynumber'] = $this->getdcategorynumber();
+        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dproductnumber'] = $this->getdproductnumber();
+
+        $data['admin_title'] = 'Stock Manager';
+        $data['admin_subtitle'] = 'View Category';
+        $data['admin_navbar'] = 'stockmanager/header';//header.php file
+        $data['admin_sidebar'] = 'stockmanager/sidebar';//sidebar.php file
+        $data['admin_content'] = 'stockmanager/view_category';//viewcategory.php file
         $data['admin_footer'] = 'stockmanager/footer';//footer.php file
 
         
@@ -820,6 +862,39 @@ class Stockmanager extends MY_Controller {
  
     }
 
+    function commentdetail($id)
+    {
+        $this->log_check();
+        $userdet = array();
+
+        
+        $results = $this->stockmanager_model->commentprofile($id);
+
+        foreach ($results as $key => $values) {
+            $details['comments'][] = $values;  
+        }
+        
+        
+        $data['commentdetails'] = $details;
+
+        $data['dordernumber'] = $this->getdordernumber();
+        $data['dcategorynumber'] = $this->getdcategorynumber();
+        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dproductnumber'] = $this->getdproductnumber();
+
+        $data['admin_title'] = 'Stock Manager';
+        $data['admin_subtitle'] = 'View Comment';
+        $data['admin_navbar'] = 'stockmanager/header';
+        $data['admin_sidebar'] = 'stockmanager/sidebar';
+        $data['admin_content'] = 'stockmanager/view_comment';
+        $data['admin_footer'] = 'stockmanager/footer';
+
+        
+        
+        $this->template->call_admin_template($data);
+ 
+    }
+
     function vieworder($id)
     {
         $this->log_check();
@@ -845,6 +920,39 @@ class Stockmanager extends MY_Controller {
         $data['admin_navbar'] = 'stockmanager/header';
         $data['admin_sidebar'] = 'stockmanager/sidebar';
         $data['admin_content'] = 'stockmanager/vieworder';
+        $data['admin_footer'] = 'stockmanager/footer';
+
+        
+        
+        $this->template->call_admin_template($data);
+ 
+    }
+
+    function orderdetail($id)
+    {
+        $this->log_check();
+        $userdet = array();
+
+        
+        $results = $this->stockmanager_model->orderprofile($id);
+
+        foreach ($results as $key => $values) {
+            $details['orders'][] = $values;  
+        }
+        
+        
+        $data['orderdetails'] = $details;
+
+        $data['dordernumber'] = $this->getdordernumber();
+        $data['dcategorynumber'] = $this->getdcategorynumber();
+        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dproductnumber'] = $this->getdproductnumber();
+
+        $data['admin_title'] = 'Stock Manager';
+        $data['admin_subtitle'] = 'View Order';
+        $data['admin_navbar'] = 'stockmanager/header';
+        $data['admin_sidebar'] = 'stockmanager/sidebar';
+        $data['admin_content'] = 'stockmanager/view_order';
         $data['admin_footer'] = 'stockmanager/footer';
 
         
@@ -1051,7 +1159,7 @@ class Stockmanager extends MY_Controller {
 
                 // button below used for viewing the specific category. Goes to stockmanager controller into function called viewcategory(), passing the category id as parameter
                 // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'stockmanager/viewproduct/'.$data['Product ID'].'"><i class="fa fa-eye black"></i></a></td>';
-                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/stockmanager/viewproduct/'.$data['Product ID'].'"><i class="fa fa-eye black"></i></a></td>';
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/stockmanager/productdetail/'.$data['Product ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 
                 // button below used for editing the specific category. Goes to stockmanager controller into function called catupdate(), passing the type of update and the category id as parameter
                 // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'stockmanager/product_status/proddelete/'.$data['Product ID'].'"><i class="fa fa-trash black"></i></td>';
@@ -1215,6 +1323,35 @@ class Stockmanager extends MY_Controller {
         $data['admin_navbar']='stockmanager/header';
         $data['admin_sidebar']='stockmanager/sidebar';
         $data['admin_content']='stockmanager/v_product';
+        $data['admin_footer']='stockmanager/footer';
+
+        //echo'<pre>';print_r($data);echo'</pre>';die();
+        $this->template->call_admin_template($data);
+    }
+
+    function productdetail($id)
+    {
+        $product_details=array();
+        $results=$this->stockmanager_model->productprofile($id);
+
+        foreach ($results as $key => $values) {
+            $details['products'][] = $values;  
+        }
+
+        $data['productdetails'] = $details;
+        $data['getcategories'] = $this->getcategories();
+
+
+        $data['dordernumber'] = $this->getdordernumber();
+        $data['dcategorynumber'] = $this->getdcategorynumber();
+        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dproductnumber'] = $this->getdproductnumber();
+
+        $data['admin_title']='Stock Manager';
+        $data['admin_subtitle']='View Product';
+        $data['admin_navbar']='stockmanager/header';
+        $data['admin_sidebar']='stockmanager/sidebar';
+        $data['admin_content']='stockmanager/view_product';
         $data['admin_footer']='stockmanager/footer';
 
         //echo'<pre>';print_r($data);echo'</pre>';die();

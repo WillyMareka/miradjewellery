@@ -75,7 +75,7 @@
 
                             <div class="form-group">
                                 <label>Subject</label>
-                                <input id="editcommentsubject" name="editcommentsubject" disabled required value="<?php echo $data['comm_email']; ?>"class="form-control validate[required]">
+                                <input id="editcommentsubject" name="editcommentsubject" disabled required value="<?php echo $data['comm_subject']; ?>"class="form-control validate[required]">
                             </div>
 
                             <div class="form-group">
