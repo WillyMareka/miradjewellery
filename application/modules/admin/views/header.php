@@ -42,7 +42,7 @@
                     <ul class="dropdown-menu">
                         <li>
                             <!-- <a href="<?php echo base_url(). 'admin/viewemployee/'.$this->session->userdata('emp_id')?>"><i class="fa fa-fw fa-user"></i> Profile</a> -->
-                            <a href="<?php echo base_url(). 'index.php/admin/viewemployee/'.$this->session->userdata('emp_id')?>"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="<?php echo base_url(). 'index.php/admin/employeedetail/'.$this->session->userdata('emp_id')?>"><i class="fa fa-fw fa-user"></i> Profile</a>
                             
                         </li>
                         <li>

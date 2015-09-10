@@ -829,6 +829,39 @@ class Stockmanager extends MY_Controller {
  
     }
 
+    function employeedetail($id)
+    {
+        $this->log_check();
+        $userdet = array();
+
+        
+        $results = $this->stockmanager_model->administratorprofile($id);
+
+        foreach ($results as $key => $values) {
+            $details['employees'][] = $values;  
+        }
+        
+        
+        $data['employeedetails'] = $details;
+
+        $data['dordernumber'] = $this->getdordernumber();
+        $data['dcategorynumber'] = $this->getdcategorynumber();
+        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dproductnumber'] = $this->getdproductnumber();
+
+        $data['admin_title'] = 'Stock Manager';
+        $data['admin_subtitle'] = 'View Employee';
+        $data['admin_navbar'] = 'stockmanager/header';
+        $data['admin_sidebar'] = 'stockmanager/sidebar';
+        $data['admin_content'] = 'stockmanager/view_administrator';
+        $data['admin_footer'] = 'stockmanager/footer';
+
+        
+        
+        $this->template->call_admin_template($data);
+ 
+    }
+
     function viewcomment($id)
     {
         $this->log_check();

@@ -166,7 +166,7 @@ class Admin_model extends MY_Model {
     }
 
     public function ordernumber() {
-        $sql = "SELECT COUNT(`order_id`) as orders FROM orders WHERE order_status = 1";
+        $sql = "SELECT COUNT(`order_id`) as orders FROM orders WHERE order_status = 0";
 
         $result = $this->db->query($sql);
         $data = $result->row();
@@ -176,7 +176,7 @@ class Admin_model extends MY_Model {
     }
 
     public function dordernumber() {
-        $sql = "SELECT COUNT(`order_id`) as orders FROM orders WHERE order_status = 0";
+        $sql = "SELECT COUNT(`order_id`) as orders FROM orders WHERE order_status = 1";
 
         $result = $this->db->query($sql);
         $data = $result->row();
@@ -394,7 +394,7 @@ class Admin_model extends MY_Model {
           order_status as 'Order Status',
           order_date as 'Date Ordered'
         FROM
-          orders WHERE order_status = 0";
+          orders WHERE order_status = 1";
         $result = $this->db->query($sql);
         return $result->result_array();
     }

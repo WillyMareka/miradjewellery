@@ -40,7 +40,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $username ;?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="<?php echo base_url(). 'index.php/stockmanager/viewemployee/'.$this->session->userdata('emp_id')?>"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="<?php echo base_url(). 'index.php/stockmanager/employeedetail/'.$this->session->userdata('emp_id')?>"><i class="fa fa-fw fa-user"></i> Profile</a>
                             <!-- <a href="<?php echo base_url(). 'index.php/stockmanager/viewemployee/'.$this->session->userdata('emp_id')?>"><i class="fa fa-fw fa-user"></i> Profile</a> -->
                             
                         </li>
