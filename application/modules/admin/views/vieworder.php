@@ -96,7 +96,7 @@
                                 <input id="editorderdate" name="editorderdate" disabled required type="email" value="<?php echo $data['order_date']; ?>"class="form-control validate[required, custom[email]]">
                             </div>
 
-                            <button type="submit" class="btn btn-success">Submit Button</button>
+                            <button type="submit" class="btn btn-success">Edit Order</button>
                             <!-- <a href="<?php echo base_url(). 'admin/orders'?>" class="btn btn-warning">Back</a> -->
                             <a href="<?php echo base_url(). 'index.php/admin/orders'?>" class="btn btn-warning">Back</a>
                             

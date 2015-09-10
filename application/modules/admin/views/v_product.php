@@ -61,7 +61,7 @@
 
                             <div class="form-group">
                                 <label>Product Description</label>
-                                <textarea name="editprod_description" required value="<?php echo $data['proddescription']; ?>" id="prod_description" class="form-control validate[required]"></textarea>
+                                <textarea name="editprod_description" required id="prod_description" class="form-control validate[required]"><?php echo $data['proddescription']; ?></textarea>
                             </div>
 
                             <div class="form-group">

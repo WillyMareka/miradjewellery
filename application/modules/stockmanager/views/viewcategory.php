@@ -11,11 +11,11 @@
                         <ol class="breadcrumb">
                             <li class="active">
                                  <i class="fa fa-dashboard"></i>
-                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dashboard'?>">Stock Manager Dashboard</a> > 
-                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/categories'?>">Categories</a> >
+                                   <!-- <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dashboard'?>">Stock Manager Dashboard</a> > 
+                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/categories'?>">Categories</a> > -->
 
-                                   <!-- <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/dashboard'?>">Manager Dashboard</a> > 
-                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/categories'?>">Category</a> > -->
+                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/dashboard'?>">Manager Dashboard</a> > 
+                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/categories'?>">Category</a> >
                                    <a class="crumbs" href="#'?>"><?php echo $admin_subtitle?></a>
                             </li>
                         </ol>
@@ -30,7 +30,8 @@
                            // categorydetails acquired from the controller admin, in the function called viewcategory()
                             foreach ($categorydetails as $key => $value) {
                             foreach ($value as $q => $data) {
-                           //echo '<pre>';print_r($categorydetails);echo'</pre>';die();
+                            
+                           //echo '<pre>';print_r($user);echo'</pre>';die();
                             for ($i=0; $i <= $key ; $i++) { 
                                 
                             ?>
@@ -75,8 +76,8 @@
                             </div>
 
                             <!-- <button type="submit" class="btn btn-success">Submit Button</button> -->
-                            <a href="<?php echo base_url(). 'stockmanager/categories'?>" class="btn btn-warning">Back</a>
-                            <!-- <a href="<?php echo base_url(). 'index.php/stockmanager/categories'?>" class="btn btn-warning">Back</a> -->
+                            <!-- <a href="<?php echo base_url(). 'stockmanager/categories'?>" class="btn btn-warning">Back</a> -->
+                            <a href="<?php echo base_url(). 'index.php/stockmanager/categories'?>" class="btn btn-warning">Back</a>
                             
                             <!-- <button type="reset" class="btn btn-warning">Reset Button</button> -->
 

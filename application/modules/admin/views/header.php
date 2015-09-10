@@ -18,19 +18,19 @@
                         
                         <li>
                             <!-- <a href="<?php echo base_url(). 'admin/dclients'?>">Clients <span class="label label-danger right"><?php echo $dclientnumber?></span></a> -->
-                            <a href="<?php echo base_url(). 'index.php/admin/dclients'?>">Clients <span class="label label-danger right">25</span></a>
+                            <a href="<?php echo base_url(). 'index.php/admin/dclients'?>">Clients <span class="label label-danger right"><?php echo $dclientnumber?></span></a>
                         </li>
                         <li>
                             <!-- <a href="<?php echo base_url(). 'admin/dcategories'?>">Categories <span class="label label-danger right"><?php echo $dcategorynumber?></span></a> -->
-                            <a href="<?php echo base_url(). 'index.php/admin/dcategories'?>">Categories <span class="label label-danger right">8</span></a>
+                            <a href="<?php echo base_url(). 'index.php/admin/dcategories'?>">Categories <span class="label label-danger right"><?php echo $dcategorynumber?></span></a>
                         </li>
                         <li>
                             <!-- <a href="<?php echo base_url(). 'admin/dproducts'?>">Products <span class="label label-danger right"><?php echo $dproductnumber?></span></a> -->
-                            <a href="<?php echo base_url(). 'index.php/admin/dproducts'?>">Products <span class="label label-danger right">14</span></a>
+                            <a href="<?php echo base_url(). 'index.php/admin/dproducts'?>">Products <span class="label label-danger right"><?php echo $dproductnumber?></span></a>
                         </li>
                         <li>
-                            <!-- <a href="<?php echo base_url(). 'admin/dcomments'?>">Comments <span class="label label-danger right"><?php echo $dcommentnumber?></span></a> -->
-                            <a href="<?php echo base_url(). 'index.php/admin/dcomments'?>">Administrators <span class="label label-danger right">2</span></a>
+                            <!-- <a href="<?php echo base_url(). 'admin/demployees'?>">Administrators <span class="label label-danger right"><?php echo $dcommentnumber?></span></a> -->
+                            <a href="<?php echo base_url(). 'index.php/admin/demployees'?>">Administrators <span class="label label-danger right"><?php echo $dcommentnumber?></span></a>
                         </li>
                         <li class="divider"></li>
                         

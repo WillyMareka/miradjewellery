@@ -44,8 +44,8 @@
                             </div>
 
 
-                            <button type="submit" class="btn btn-success">Submit Button</button>
-                            <button type="reset" class="btn btn-warning">Reset Button</button>
+                            <button type="submit" class="btn btn-success">Add Category</button>
+                            <button type="reset" class="btn btn-warning">Reset Form</button>
                             <!-- <a class="adminback" href="<?php echo base_url(). 'admin/categories'?>">Back</a> -->
                             <a class="adminback" href="<?php echo base_url(). 'index.php/admin/categories'?>">Back</a>
 

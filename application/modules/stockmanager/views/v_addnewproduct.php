@@ -11,12 +11,12 @@
                         <ol class="breadcrumb">
                             <li class="active">
                                 <i class="fa fa-dashboard"></i> 
-                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dashboard'?>">Stock Manager Dashboard</a> > 
+                                   <!-- <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dashboard'?>">Stock Manager Dashboard</a> > 
                                    <a class="crumbs" href="<?php echo base_url(). 'stockmanager/products'?>">Product</a> > 
-                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/addproduct'?>"><?php echo $admin_subtitle?></a>
-                                   <!-- <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager'?>">Manager Dashboard</a> > 
+                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/addproduct'?>"><?php echo $admin_subtitle?></a> -->
+                                    <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager'?>">Manager Dashboard</a> > 
                                    <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/products'?>">Product</a> > 
-                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/addproduct'?>"><?php echo $admin_subtitle?></a> -->
+                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/addproduct'?>"><?php echo $admin_subtitle?></a> 
                             </li>
                         </ol>
                     </div>
@@ -64,10 +64,10 @@
                             </div>
 
 
-                            <button type="submit" class="btn btn-success">Submit Button</button>
-                            <button type="reset" class="btn btn-warning">Reset Button</button>
-                            <a class="adminback" href="<?php echo base_url(). 'stockmanager/products'?>">Back</a>
-                            <!-- <a class="adminback" href="<?php echo base_url(). 'index.php/stockmanager/products'?>">Back</a> -->
+                            <button type="submit" class="btn btn-success">Add Product</button>
+                            <button type="reset" class="btn btn-warning">Reset Form</button>
+                            <!-- <a class="adminback" href="<?php echo base_url(). 'stockmanager/products'?>">Back</a> -->
+                            <a class="adminback" href="<?php echo base_url(). 'index.php/stockmanager/products'?>">Back</a>
 
                         </form>
                   </div>

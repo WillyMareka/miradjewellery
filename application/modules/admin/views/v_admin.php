@@ -129,15 +129,15 @@
                    <div class="table-responsive">
                      <div class="table-toolbar">
                        <div class="btn-group pull-right table-buttons">
-                       <a class="left adminadd" href="<?php echo base_url(). 'admin/addcategory'?>">Add Category</a>
+                       <a class="left adminadd" href="<?php echo base_url(). 'index.php/admin/addcategory'?>">Add Category</a>
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'index.php/admin/addcategory'?>">Add Category</a> -->
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Exports <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Download <?php echo $admin_subtitle?> <span class="caret"></span></button>
                          <ul class="dropdown-menu">
-                           <!-- <li><a href="<?php echo base_url(). 'admin/allcategories/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'admin/allcategories/excel'?>">Export to Excel</a></li> -->
+                           <!-- <li><a href="<?php echo base_url(). 'admin/allcategories/pdf'?>">Download <?php echo $admin_subtitle?> to PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'admin/allcategories/excel'?>">Download <?php echo $admin_subtitle?> to Excel</a></li> -->
 
-                           <li><a href="<?php echo base_url(). 'index.php/admin/allcategories/active/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'index.php/admin/allcategories/active/excel'?>">Export to Excel</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/admin/allcategories/active/pdf'?>">Download <?php echo $admin_subtitle?> to PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/admin/allcategories/active/excel'?>">Download <?php echo $admin_subtitle?> to Excel</a></li>
                          </ul>
                        </div>
                      </div>
@@ -171,14 +171,14 @@
                      <div class="table-toolbar">
                        <div class="btn-group pull-right table-buttons">
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'admin/addproduct'?>">Add Product</a> -->
-                       <a class="left adminadd" href="<?php echo base_url(). 'index.php/admin/addproduct'?>">Add Product</a>
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Export <span class="caret"></span></button>
+                       <!-- <a class="left adminadd" href="<?php echo base_url(). 'index.php/admin/addproduct'?>">Add Product</a> -->
+                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Download <?php echo $admin_subtitle?> <span class="caret"></span></button>
                          <ul class="dropdown-menu">
                            <!-- <li><a href="<?php echo base_url(). 'admin/allcategories/pdf'?>">Save as PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'admin/allcategories/excel'?>">Export to Excel</a></li> -->
+                           <li><a href="<?php echo base_url(). 'admin/allcategories/excel'?>">Download <?php echo $admin_subtitle?> to Excel</a></li> -->
 
                            <li><a href="<?php echo base_url(). 'index.php/admin/allcategories/active/pdf'?>">Save as PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'index.php/admin/allcategories/active/excel'?>">Export to Excel</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/admin/allcategories/active/excel'?>">Download <?php echo $admin_subtitle?> to Excel</a></li>
                          </ul>
                        </div>
                      </div>
@@ -218,13 +218,13 @@
                        
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'admin/addemployee'?>">Add Employees</a> -->
                        <a class="left adminadd" href="<?php echo base_url(). 'index.php/admin/addemployee'?>">Add Employees</a>
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Exports <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Download <?php echo $admin_subtitle?> <span class="caret"></span></button>
                          <ul class="dropdown-menu">
-                           <!-- <li><a href="<?php echo base_url(). 'admin/allemployees/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'admin/allemployees/excel'?>">Export to Excel</a></li> -->
+                           <!-- <li><a href="<?php echo base_url(). 'admin/allemployees/pdf'?>">Download <?php echo $admin_subtitle?> to PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'admin/allemployees/excel'?>">Download <?php echo $admin_subtitle?> to Excel</a></li> -->
 
-                           <li><a href="<?php echo base_url(). 'index.php/admin/allemployees/active/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'index.php/admin/allemployees/active/excel'?>">Export to Excel</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/admin/allemployees/active/pdf'?>">Download <?php echo $admin_subtitle?> to PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/admin/allemployees/active/excel'?>">Download <?php echo $admin_subtitle?> to Excel</a></li>
                          </ul>
                        </div>
                      </div>

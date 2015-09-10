@@ -11,11 +11,11 @@
                         <ol class="breadcrumb">
                             <li class="active">
                                 <i class="fa fa-dashboard"></i>
-                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dashboard'?>">Stock Manager Dashboard</a> > 
-                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dorders'?>"><?php echo $admin_subtitle?></a>
+                                   <!-- <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dashboard'?>">Stock Manager Dashboard</a> > 
+                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dorders'?>"><?php echo $admin_subtitle?></a> -->
 
-                                   <!-- <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/dashboard'?>">Manager Dashboard</a> > 
-                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/dorders'?>"><?php echo $admin_subtitle?></a> -->
+                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/dashboard'?>">Manager Dashboard</a> > 
+                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/dorders'?>"><?php echo $admin_subtitle?></a>
                                    
                             </li>
                         </ol>
@@ -34,11 +34,11 @@
                        
                          <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Exports <span class="caret"></span></button>
                          <ul class="dropdown-menu">
-                           <li><a href="<?php echo base_url(). 'stockmanager/allorders/inactive/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'stockmanager/allorders/inactive/excel'?>">Export to Excel</a></li>
+                           <!-- <li><a href="<?php echo base_url(). 'stockmanager/allorders/inactive/pdf'?>">Export to PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'stockmanager/allorders/inactive/excel'?>">Export to Excel</a></li> -->
 
-                           <!-- <li><a href="<?php echo base_url(). 'index.php/stockmanager/allorders/inactive/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allorders/inactive/excel'?>">Export to Excel</a></li> -->
+                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allorders/inactive/pdf'?>">Export to PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allorders/inactive/excel'?>">Export to Excel</a></li>
                          </ul>
                        </div>
                      </div>

@@ -11,11 +11,11 @@
                         <ol class="breadcrumb">
                             <li class="active">
                                 <i class="fa fa-dashboard"></i>
-                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dashboard'?>">Stock Manager Dashboard</a> > 
-                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dcategories'?>"><?php echo $admin_subtitle?></a>
+                                   <!-- <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dashboard'?>">Stock Manager Dashboard</a> > 
+                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dcategories'?>"><?php echo $admin_subtitle?></a> -->
 
-                                   <!-- <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/dashboard'?>">Manager Dashboard</a> > 
-                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/dcategories'?>"><?php echo $admin_subtitle?></a> -->
+                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/dashboard'?>">Manager Dashboard</a> > 
+                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/dcategories'?>"><?php echo $admin_subtitle?></a>
                                    
                             </li>
                         </ol>
@@ -28,7 +28,7 @@
                 
 
                   <div class="col-lg-12">
-                   <h2 class="table-title">Categories</h2>
+                   <h2 class="table-title">Deactivated Categories</h2>
                    <div class="table-responsive">
                      <div class="table-toolbar">
                        <div class="btn-group pull-right table-buttons">
@@ -38,11 +38,11 @@
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'index.php/stockmanager/addcategory'?>">Add <?php echo $admin_subtitle?></a> -->
                          <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Exports <span class="caret"></span></button>
                          <ul class="dropdown-menu">
-                           <li><a href="<?php echo base_url(). 'stockmanager/allcategories/inactive/inactive/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'stockmanager/allcategories/inactive/inactive/excel'?>">Export to Excel</a></li>
+                           <!-- <li><a href="<?php echo base_url(). 'stockmanager/allcategories/inactive/inactive/pdf'?>">Export to PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'stockmanager/allcategories/inactive/inactive/excel'?>">Export to Excel</a></li> -->
 
-                           <!-- <li><a href="<?php echo base_url(). 'index.php/stockmanager/allcategories/inactive/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allcategories/inactive/excel'?>">Export to Excel</a></li> -->
+                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allcategories/inactive/pdf'?>">Export to PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allcategories/inactive/excel'?>">Export to Excel</a></li>
                          </ul>
                        </div>
                      </div>

@@ -64,8 +64,8 @@
                             </div>
 
 
-                            <button type="submit" class="btn btn-success">Submit Button</button>
-                            <button type="reset" class="btn btn-warning">Reset Button</button>
+                            <button type="submit" class="btn btn-success">Add Employee</button>
+                            <button type="reset" class="btn btn-warning">Reset Form</button>
                            <!--  <a class="adminback" href="<?php echo base_url(). 'admin/employees'?>">Back</a> -->
                            <a class="adminback" href="<?php echo base_url(). 'index.php/admin/employees'?>">Back</a> 
 

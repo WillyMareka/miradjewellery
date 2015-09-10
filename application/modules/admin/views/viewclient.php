@@ -122,7 +122,7 @@
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn btn-success">Submit Button</button>
+                            <button type="submit" class="btn btn-success">Edit Client</button>
                             <!-- <a href="<?php echo base_url(). 'admin/clients'?>" class="btn btn-warning">Back</a> -->
                             <a href="<?php echo base_url(). 'index.php/admin/clients'?>" class="btn btn-warning">Back</a>
                             

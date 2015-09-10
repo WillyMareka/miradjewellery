@@ -12,7 +12,76 @@ class Home_model extends MY_Model {
     
     /* get all active  categories from  the  database
     _______________________________________________________*/
+    function generateReceipt()
+  {
+        $query = "SELECT MAX(order_id) FROM orders";
+            try {
+                $this->dataSet = $this->db->query($query);
+                $this->dataSet = $this->dataSet->result_array();
+            }
+            catch(exception $ex) {
+            }
+            
+            return $this->dataSet;
+  }
 
+  function generate_order($cust_id,$receipt_no){
+    
+        $products = $this->get_cart($cust_id);
+
+        foreach ($products as $key => $product) {
+                $prodid=$product['prod_id'];
+                $quantity=$product['quantity'];
+                //$prodprice=$product['prodprice'];
+
+                $price = $this->get_price($prodid);
+
+                foreach ($price as $key => $data) {
+                 $prodprice = $data['prodprice'];
+
+                 $subtotal = $prodprice * $quantity;
+                 //echo "<pre>";print_r($subtotal);echo "</pre>";die();
+                 $order=array(
+                  'cust_id'=>$cust_id,
+                  'order_no'=>$receipt_no,
+                  'prodid'=>$prodid,
+                  'prodprice'=>$prodprice,
+                  'quantity'=>$quantity,
+                  'subtotal'=>$subtotal
+                  );
+                  //echo "<pre>";print_r($order);echo "</pre>";die();
+                   $insert=$this->db->insert('orders', $order);
+                }
+                
+        }
+
+        $sql2 = "DELETE FROM cart WHERE cust_id = $cust_id";
+
+        $result = $this->db->query($sql2);
+        return $result;
+      
+     
+  }
+
+  function get_cart($cust_id){
+    $sql = "SELECT * FROM cart WHERE cust_id = '$cust_id'";
+        $result = $this->db->query($sql);
+        return $result->result_array();
+  }
+
+   
+
+  function get_price($prodid){
+    $sql = "SELECT * FROM products WHERE prodid = '$prodid' ";
+        $result = $this->db->query($sql);
+        return $result->result_array();
+  }
+
+  function get_orders($id) {
+        $sql = "SELECT * FROM orders WHERE cust_id = '$id' ";
+        $result = $this->db->query($sql);
+        return $result->result_array();
+    }
 
     public function get_categories(){
 
@@ -49,9 +118,36 @@ class Home_model extends MY_Model {
         return $data->result_array();
     }
 
+    
+
+    /*getting the count of all product
+    _____________________________________________*/
+    
+    public function countproduct(){
+      return $this->db->count_all("products");
+    }
+
+    /*getting products based on page limit
+    _____________________________________________*/
+    public function getproducts($limit,$offset){
+        $this->db->limit($limit,$offset);
+        $products=$this->db->get("products");
+        if($products->num_rows()>0){
+            foreach ($products->result() as $product) {
+              $data[]=$product;
+            }
+            return $data;
+        }
+        
+        return false;
+    }
+
+    /*getting  products  that belongs  to a given category
+    _______________________________________________________*/
+
     public function category_product($catid=NULL){
 
-            if(!empty($catid)){
+            if( ! empty($catid)){
             $sql="SELECT 
             p.prodid AS 'Product ID',
             p.prodname AS 'Product Name',
@@ -61,20 +157,20 @@ class Home_model extends MY_Model {
             FROM products p, category c
             WHERE p.catid= c.catid AND c.catid ='$catid'";
 
-            $result=$this->db->query($sql);
-            if($result->num_rows()>0){
-                return $result->result_array();
-            }
-            else{
-                $result="Product for that category are currently out of  stock";
-                return $result;
-            }
+               $result=$this->db->query($sql);
+                if($result->num_rows()> 0){
+                  return $result->result_array();
+              }
+              else{
+                  $result="Sorry, no result for this combination, please try something else";
+                  return $result;
+              }
 
             //echo "<pre>";print_r($result);echo "</pre>";die();
             
             }
 
-            else if(empty($catid)){
+            else if( empty($catid)){
              $sql="SELECT 
             p.prodid AS 'Product ID',
             p.prodname AS 'Product Name',
@@ -92,14 +188,32 @@ class Home_model extends MY_Model {
     
     }
     
+    /* search for product from the  database
+    _____________________________________________________*/
+
+    public function get_results($search){
+        if (! empty($search)) {
+          $sql="SELECT prodname 
+                      FROM products
+                      WHERE prodname LIKE '%search%';";
+                       $result=$this->db->query($sql);
+                      return $result->result_array();
+        }
+        else{
+          $result="";
+          return $result;
+        }
+       
+    }
+
     /*getting all the products  from the database
     ______________________________________________________*/
 
-    public function getproduct($pid=NULL){
+    public function getproduct( $pid=NULL){
 
         //$data=array();
 
-        if( !empty($pid)){
+        if( ! empty($pid)){
             //get specific product
             $sql="SELECT 
             p.prodid AS 'Product ID',
@@ -119,7 +233,7 @@ class Home_model extends MY_Model {
                 }
         }
         else{
-            $this->category_product();
+           // $this->category_product();
         }
     }
 
@@ -250,7 +364,14 @@ class Home_model extends MY_Model {
       WHERE cu.cust_id = c.cust_id AND c.cust_id = $custid";
 
       $result=$this->db->query($sql);
-      return $result->result_array();
+      if($result->num_rows()>0){
+        return $result->result_array();
+      }
+      else{
+        $result="Your shopping cart is empty";
+        return $result;
+      }
+      
     }
 
     public function update_product($updatetype,$prodid,$cust_id,$productquantity){

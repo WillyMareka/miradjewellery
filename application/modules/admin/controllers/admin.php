@@ -2,9 +2,9 @@
 
 class Admin extends MY_Controller {
 
-	public $logged_in;
+    public $logged_in;
 
-	function __construct()
+    function __construct()
     {
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
@@ -18,9 +18,10 @@ class Admin extends MY_Controller {
         
         $this->pic_path = realpath(APPPATH . '../uploads/');
         //$this->pic_path = realpath(APPPATH . '..index.php/uploads/');
-
+        $this->load->module('export');
         $this->load->model('admin_model');
         $this->load->model('home/home_model');
+        $this->load->model('stockmanager/stockmanager_model');
         
         parent::__construct();
           
@@ -41,8 +42,8 @@ class Admin extends MY_Controller {
    function log_check(){
       if($this->session->userdata('logged_in') == 0){
 
-          redirect(base_url().'index.php/admin');
           //redirect(base_url().'index.php/admin');
+          redirect(base_url().'index.php/admin');
       }else{
         return "logged_in";
       }
@@ -55,8 +56,8 @@ class Admin extends MY_Controller {
         $log = $this->admin_model->logoutuser($sess_log);
 
         $this->session->sess_destroy();
+        //redirect(base_url().'admin');
         redirect(base_url().'index.php/admin');
-        //redirect(base_url().'index.php/admin');
     }
 
     function dashboard(){
@@ -80,7 +81,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
 
@@ -154,6 +155,15 @@ class Admin extends MY_Controller {
           //echo '<pre>'; print_r($results); echo '</pre>';die;
     }
 
+    public function demployeenumber()
+    {
+          $results = $this->admin_model->demployeenumber();
+
+          return $results;
+
+          //echo '<pre>'; print_r($results); echo '</pre>';die;
+    }
+
     public function getcategorynumber()
     {
           $results = $this->admin_model->categorynumber();
@@ -172,8 +182,43 @@ class Admin extends MY_Controller {
           //echo '<pre>'; print_r($results); echo '</pre>';die;
     }
 
+
+
+
+
+
+#uniqueness of username
+    // function exists_username($str)
+    // {
+    //     $record_id = $this->input->post('record_id');
+    //     $condition = array('user_id !='=>$record_id,'username'=>$str);
+    //     $value =GetAllRecord('user_master',$condition,$is_single=true);
+    //     if (count($value) == 0)
+    //     {
+    //         return TRUE;
+    //     }
+    //     else
+    //     {
+    //         $this->form_validation->set_message('exists_username', 'username already exists!');
+    //         return FALSE;
+    //     }
+    // }
+
+
+
     function validate_member()
     {
+
+        //$this->form_validation->set_rules('username', 'userName', 'required|callback_exists_username');
+
+        if($this->session->userdata('logged_in')){
+           echo json_encode(array(
+                          'level' => 'active',
+                          'state' => 'error',
+                          'subject' => 'Log Fail',
+                          'message'=> 'Already Logged in...try refreshing the page'
+                          ));
+        }else{
         
             $username = $this->input->post('useremail');
             $passw1 = md5($this->input->post('userpassword'));
@@ -196,8 +241,6 @@ class Admin extends MY_Controller {
                           'subject' => 'Log Success',
                           'message'=> 'Logged in successfully'
                           ));
-
-                          //redirect(base_url().'index.php/stockmanager/dashboard');
                           
                         break;
 
@@ -210,8 +253,6 @@ class Admin extends MY_Controller {
                           'subject' => 'Log Success',
                           'message'=> 'Logged in successfully'
                         ));
-
-                        //$this->dashboard();
                         break;
 
                         // Level 3 Stock Manager
@@ -223,8 +264,6 @@ class Admin extends MY_Controller {
                           'subject' => 'Log Success',
                           'message'=> 'Logged in successfully'
                           ));
-
-                          // redirect(base_url().'index.php/stockmanager/dashboard');
                           
                         break;
                     }
@@ -259,6 +298,7 @@ class Admin extends MY_Controller {
                     // echo '';
                 break;
             }   
+        }
         
     }  
 
@@ -273,7 +313,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
         $data['admin_title'] = 'Manager';
@@ -295,7 +335,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
         $data['admin_title'] = 'Manager';
@@ -317,7 +357,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
         $data['admin_title'] = 'Manager';
@@ -340,7 +380,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
         $data['admin_title'] = 'Manager';
@@ -363,7 +403,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
         $data['admin_title'] = 'Manager';
@@ -387,7 +427,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
         $data['admin_title'] = 'Manager';
@@ -409,7 +449,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
         $data['admin_title'] = 'Manager';
@@ -432,7 +472,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
         $data['admin_title'] = 'Manager';
@@ -454,7 +494,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
         $data['admin_title'] = 'Manager';
@@ -474,7 +514,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
         
         $this->log_check();
@@ -495,7 +535,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
         
         $this->log_check();
@@ -559,6 +599,9 @@ class Admin extends MY_Controller {
 
         foreach ($customers as $key => $data) {
             $count++;
+
+            
+//echo "<pre>";print_r($date);die();
                 if ($data['Customer Status'] == 1) {
                     $state = '<span class="label label-info">Activated</span>';
                     $states = 'Activated';
@@ -575,11 +618,12 @@ class Admin extends MY_Controller {
                 $display .= '<td class="centered">'.$data['Customer Title'].'</td>';
                 $display .= '<td class="centered">'.$data['Customer Name'].'</td>';
                 $display .= '<td class="centered">'.$data['Customer Email'].'</td>';
-                $display .= '<td class="centered">'.$data['Date Registered'].'</td>';
+                $date = date("d-m-Y",strtotime($data['Date Registered']));
+                $display .= '<td class="centered">'.$date.'</td>';
                 $display .= '<td class="centered">'.$state.'</td>';
 
                 //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'admin/viewclient/'.$data['Customer ID'].'"><i class="fa fa-eye black"></i></a></td>';
-                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/viewclient/'.$data['Customer ID'].'"><i class="fa fa-eye black"></i></a></td>';
+                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/viewclient/'.$data['Customer ID'].'"><i class="fa fa-eye black"></i></a></td>';
            
                         //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'admin/clientupdate/clientdelete/'.$data['Customer ID'].'"><i class="fa fa-trash black"></i></td>';
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/admin/clientupdate/clientdelete/'.$data['Customer ID'].'"><i class="fa fa-trash black"></i></td>';
@@ -1098,7 +1142,8 @@ class Admin extends MY_Controller {
                 $display .= '<td class="centered">'.$data['Employee Name'].'</td>';
                 $display .= '<td class="centered">'.$data['Employee Email'].'</td>';
                 $display .= '<td class="centered">'.$level.'</td>';
-                $display .= '<td class="centered">'.$data['Date Registered'].'</td>';
+                $date = date("d-m-Y",strtotime($data['Date Registered']));
+                $display .= '<td class="centered">'.$date.'</td>';
                 $display .= '<td class="centered">'.$state.'</td>';
 
 
@@ -1333,7 +1378,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
         $data['admin_title'] = 'Manager';
@@ -1369,7 +1414,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
         $data['admin_title'] = 'Manager';
@@ -1402,7 +1447,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
 
@@ -1436,7 +1481,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
 
@@ -1470,7 +1515,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
 
@@ -1590,11 +1635,11 @@ class Admin extends MY_Controller {
             switch ($type) {
 
                 case 'empdelete':
-                    $this->administrators();
+                    $this->employees();
                     break;
 
                 case 'emprestore':
-                    $this->administrators();
+                    $this->employees();
                     break;
                 
                 default:
@@ -1613,7 +1658,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
         $data['admin_title'] = 'Manager';
@@ -1634,7 +1679,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
         $data['admin_title'] = 'Manager';
@@ -1658,7 +1703,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
         
 
@@ -1745,11 +1790,11 @@ class Admin extends MY_Controller {
                 $display .= '<td class="centered">'.$state.'</td>';
 
                 // button below used for viewing the specific category. Goes to admin controller into function called viewcategory(), passing the category id as parameter
-                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'admin/viewproduct/'.$data['Product ID'].'"><i class="fa fa-eye black"></i></a></td>';
-                // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/viewproduct/'.$data['Product ID'].'"><i class="fa fa-eye black"></i></a></td>';
+                // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'admin/viewproduct/'.$data['Product ID'].'"><i class="fa fa-eye black"></i></a></td>';
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/viewproduct/'.$data['Product ID'].'"><i class="fa fa-eye black"></i></a></td>';
           
-                        $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'admin/product_status/proddelete/'.$data['Product ID'].'"><i class="fa fa-trash black"></i></td>';
-                // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/admin/product_status/proddelete/'.$data['Product ID'].'"><i class="fa fa-trash black"></i></td>';
+                        // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'admin/product_status/proddelete/'.$data['Product ID'].'"><i class="fa fa-trash black"></i></td>';
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/admin/product_status/proddelete/'.$data['Product ID'].'"><i class="fa fa-trash black"></i></td>';
                 
                 // button below used for editing the specific category. Goes to admin controller into function called catupdate(), passing the type of update and the category id as parameter
                 $display .= '</tr>';
@@ -1878,7 +1923,7 @@ class Admin extends MY_Controller {
 
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
-        $data['dcommentnumber'] = $this->getdcommentnumber();
+        $data['dcommentnumber'] = $this->demployeenumber();
         $data['dproductnumber'] = $this->getdproductnumber();
 
         $data['admin_title']='Manager';
@@ -1931,7 +1976,7 @@ class Admin extends MY_Controller {
 
 
 
-	
+    
 }
 
 /* End of file welcome.php */

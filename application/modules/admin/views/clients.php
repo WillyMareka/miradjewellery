@@ -32,13 +32,13 @@
 
                        
                        
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Exports <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Download <?php echo $admin_subtitle?> <span class="caret"></span></button>
                          <ul class="dropdown-menu">
-                           <!-- <li><a href="<?php echo base_url(). 'admin/allclients/active/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'admin/allclients/active/excel'?>">Export to Excel</a></li>
+                           <!-- <li><a href="<?php echo base_url(). 'admin/allclients/active/pdf'?>">Download <?php echo $admin_subtitle?> to PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'admin/allclients/active/excel'?>">Download <?php echo $admin_subtitle?> to Excel</a></li>
  -->
-                           <li><a href="<?php echo base_url(). 'index.php/admin/allclients/active/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'index.php/admin/allclients/active/excel'?>">Export to Excel</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/admin/allclients/active/pdf'?>">Download <?php echo $admin_subtitle?> to PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/admin/allclients/active/excel'?>">Download <?php echo $admin_subtitle?> to Excel</a></li>
                          </ul>
                        </div>
                      </div>

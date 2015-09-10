@@ -11,9 +11,9 @@
                         <ol class="breadcrumb">
                             <li class="active">
                                  <i class="fa fa-dashboard"></i>
-                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dashboard'?>">Stock Manager Dashboard</a> >
+                                   <!-- <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dashboard'?>">Stock Manager Dashboard</a> > -->
 
-                                   <!-- <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/dashboard'?>">Manager Dashboard</a> >-->
+                                    <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/dashboard'?>">Manager Dashboard</a> >
                                    <a class="crumbs" href="#'?>"><?php echo $admin_subtitle?></a>
                             </li>
                         </ol>
@@ -118,9 +118,9 @@
 
                           
 
-                            <button type="submit" class="btn btn-success">Submit Button</button>
-                            <a href="<?php echo base_url(). 'stockmanager/dashboard'?>" class="btn btn-warning">Dashboard</a>
-                            <!-- <a href="<?php echo base_url(). 'index.php/stockmanager/dashboard'?>" class="btn btn-warning">Back</a> -->
+                            <button type="submit" class="btn btn-success">Edit Employee</button>
+                            <!-- <a href="<?php echo base_url(). 'stockmanager/dashboard'?>" class="btn btn-warning">Dashboard</a> -->
+                            <a href="<?php echo base_url(). 'index.php/stockmanager/dashboard'?>" class="btn btn-warning">Back</a>
                             
                             <!-- <button type="reset" class="btn btn-warning">Reset Button</button> -->
 

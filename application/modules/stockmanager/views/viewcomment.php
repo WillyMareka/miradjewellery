@@ -11,11 +11,11 @@
                         <ol class="breadcrumb">
                             <li class="active">
                                  <i class="fa fa-dashboard"></i>
-                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dashboard'?>">Stock Manager Dashboard</a> > 
-                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/comments'?>">Comments</a> >
+                                   <!-- <a class="crumbs" href="<?php echo base_url(). 'stockmanager/dashboard'?>">Stock Manager Dashboard</a> > 
+                                   <a class="crumbs" href="<?php echo base_url(). 'stockmanager/comments'?>">Comments</a> > -->
 
-                                   <!-- <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/dashboard'?>">Manager Dashboard</a> > 
-                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/comments'?>">Employee</a> > -->
+                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/dashboard'?>">Manager Dashboard</a> > 
+                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/stockmanager/comments'?>">Employee</a> >
                                    <a class="crumbs" href="#'?>"><?php echo $admin_subtitle?></a>
                             </li>
                         </ol>
@@ -75,7 +75,7 @@
 
                             <div class="form-group">
                                 <label>Subject</label>
-                                <input id="editcommentsubject" name="editcommentsubject" disabled required value="<?php echo $data['comm_subject']; ?>"class="form-control validate[required]">
+                                <input id="editcommentsubject" name="editcommentsubject" disabled required value="<?php echo $data['comm_email']; ?>"class="form-control validate[required]">
                             </div>
 
                             <div class="form-group">
@@ -83,9 +83,9 @@
                                 <textarea id="editcommentmessage" name="editcommentmessage" disabled required class="form-control validate[required]"><?php echo $data['comm_message']; ?></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-success">Submit Button</button>
-                            <a href="<?php echo base_url(). 'stockmanager/comments'?>" class="btn btn-warning">Back</a>
-                            <!-- <a href="<?php echo base_url(). 'index.php/stockmanager/comments'?>" class="btn btn-warning">Back</a> -->
+                            <button type="submit" class="btn btn-success">Edit Comment</button>
+                            <!-- <a href="<?php echo base_url(). 'stockmanager/comments'?>" class="btn btn-warning">Back</a> -->
+                            <a href="<?php echo base_url(). 'index.php/stockmanager/comments'?>" class="btn btn-warning">Back</a>
                             
                             <!-- <button type="reset" class="btn btn-warning">Reset Button</button> -->
 

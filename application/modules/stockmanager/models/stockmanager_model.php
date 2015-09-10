@@ -16,7 +16,7 @@ class Stockmanager_model extends MY_Model {
        return $result->result_array();
     }
 
-     function get_all_products()
+    function get_all_products()
     {
       $sql="SELECT 
         prodid AS 'Product ID',
@@ -26,14 +26,12 @@ class Stockmanager_model extends MY_Model {
         prodimage AS 'Product Image',
         product_status AS 'Product Status'
         FROM  
-          `products` 
-        WHERE
-        product_status = 1";
+          `products`";
       $result=$this->db->query($sql);
       return $result->result_array();
     }
 
-    function get_all_dproducts()
+     function get_all_dproducts()
     {
       $sql="SELECT 
         prodid AS 'Product ID',
@@ -43,9 +41,9 @@ class Stockmanager_model extends MY_Model {
         prodimage AS 'Product Image',
         product_status AS 'Product Status'
         FROM  
-          `products` 
+          `products`
         WHERE
-        product_status = 0";
+          product_status = 0";
       $result=$this->db->query($sql);
       return $result->result_array();
     }
@@ -141,16 +139,6 @@ class Stockmanager_model extends MY_Model {
 
     public function clientnumber(){
     $sql = "SELECT COUNT(`cust_id`) as clients FROM customers WHERE cust_status = 1";
-
-        $result = $this->db->query($sql);
-        $data = $result->row();
-        //echo $data->clients;die();
-
-        return $data->clients;
-   }
-
-   public function dclientnumber(){
-    $sql = "SELECT COUNT(`cust_id`) as clients FROM customers WHERE cust_status = 0";
 
         $result = $this->db->query($sql);
         $data = $result->row();
@@ -317,7 +305,21 @@ class Stockmanager_model extends MY_Model {
         
     }
 
-    
+    function get_all_stockmanageristrators()
+
+	{
+		$sql = "SELECT 
+					emp_id as 'Employee ID',
+					emp_name as 'Employee Name',
+          emp_email as 'Employee Email',
+					level_id as 'Employee Level',
+          date_registered as 'Date Registered',
+          emp_status as 'Employee Status'
+				FROM
+					`employees`";
+		$result = $this->db->query($sql);
+		return $result->result_array();
+	}
 
 
 // function that allows the acquiring of all category data from table category
@@ -333,7 +335,7 @@ class Stockmanager_model extends MY_Model {
           c.cust_status as 'Customer Status'
         FROM
           customers c,title t WHERE
-          c.title_id = t.title_id AND c.cust_status = 1";
+          c.title_id = t.title_id";
     $result = $this->db->query($sql);
     return $result->result_array();
   }
@@ -367,14 +369,12 @@ class Stockmanager_model extends MY_Model {
           order_status as 'Order Status',
           order_date as 'Date Ordered'
         FROM
-          orders
-        WHERE 
-          order_status = 0";
+          orders";
     $result = $this->db->query($sql);
     return $result->result_array();
   }
 
-  function get_all_dorders()
+   function get_all_dorders()
 
   {
     $sql = "SELECT 
@@ -387,8 +387,8 @@ class Stockmanager_model extends MY_Model {
           order_date as 'Date Ordered'
         FROM
           orders
-        WHERE 
-          order_status = 1";
+          WHERE
+          order_status = 0";
     $result = $this->db->query($sql);
     return $result->result_array();
   }
@@ -398,7 +398,7 @@ class Stockmanager_model extends MY_Model {
   {
     $sql = "SELECT 
           comm_id as 'Comment ID',
-          comm_subject as 'Comment Subject',
+          comm_email as 'Comment Subject',
           comm_message as 'Comment Message',
           comm_status as 'Comment Status',
           date_sent as 'Date Sent'
@@ -415,7 +415,7 @@ class Stockmanager_model extends MY_Model {
   {
     $sql = "SELECT 
           comm_id as 'Comment ID',
-          comm_subject as 'Comment Subject',
+          comm_email as 'Comment Subject',
           comm_message as 'Comment Message',
           comm_status as 'Comment Status',
           date_sent as 'Date Sent'
@@ -427,33 +427,36 @@ class Stockmanager_model extends MY_Model {
     return $result->result_array();
   }
 
-  function get_all_categories()
+   function get_all_categories()
+
   {
     $sql = "SELECT 
           catid as 'Category ID',
           catname as 'Category Name',
           catstatus as 'Category Status'
         FROM
-          `category`
-        WHERE
-          catstatus = 1";
+          `category` 
+        WHERE 
+           catstatus = 1";
     $result = $this->db->query($sql);
     return $result->result_array();
   }
 
-   function get_all_dcategories()
+  function get_all_dcategories()
+
   {
     $sql = "SELECT 
           catid as 'Category ID',
           catname as 'Category Name',
           catstatus as 'Category Status'
         FROM
-          `category`
-        WHERE
-          catstatus = 0";
+          `category` 
+        WHERE 
+           catstatus = 0";
     $result = $this->db->query($sql);
     return $result->result_array();
   }
+
 
 
 

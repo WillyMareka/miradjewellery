@@ -35,13 +35,13 @@
 
                        <!-- The add button takes you to the admin controller, into the function addcategory() -->
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'admin/addproduct'?>">Add <?php echo $admin_subtitle?></a> -->
-                       <a class="left adminadd" href="<?php echo base_url(). 'index.php/admin/addproduct'?>">Add <?php echo $admin_subtitle?></a>
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Export <span class="caret"></span></button>
+                       
+                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Download <?php echo $admin_subtitle?> <span class="caret"></span></button>
                          <ul class="dropdown-menu">
                            <!-- <li><a href="<?php echo base_url(). 'admin/allproducts/active/pdf'?>">Save as PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'admin/allproducts/active/excel'?>">Export to Excel</a></li> -->
+                           <li><a href="<?php echo base_url(). 'admin/allproducts/active/excel'?>">Download <?php echo $admin_subtitle?> to Excel</a></li> -->
                            <li><a href="<?php echo base_url(). 'index.php/admin/allproducts/active/pdf'?>">Save as PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'index.php/admin/allproducts/active/excel'?>">Export to Excel</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/admin/allproducts/active/excel'?>">Download <?php echo $admin_subtitle?> to Excel</a></li>
                          </ul>
                        </div>
                      </div>

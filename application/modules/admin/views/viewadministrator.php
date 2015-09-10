@@ -139,7 +139,7 @@
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn btn-success">Submit Button</button>
+                            <button type="submit" class="btn btn-success">Edit Emploee</button>
                             <!-- <a href="<?php echo base_url(). 'admin/employees'?>" class="btn btn-warning">Back</a> -->
                             <a href="<?php echo base_url(). 'index.php/admin/employees'?>" class="btn btn-warning">Back</a>
                             

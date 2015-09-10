@@ -20,22 +20,22 @@
                <form id="updatecartproduct" action="<?php echo base_url(). 'index.php/home/cartupdate/addquantity/'?><?php echo $data['Product_id']?>" name="updatecartproduct" role="form" enctype="multipart/form-data" method="POST">
                <td>
                   <div class="form-group image-profile">
-                    <img style="width:100px;height:100px;"src="<?php echo base_url().'assets/images/ring1.jpg'?>" alt="Product pic">
+                    <img style="width:100px;height:100px;"src="<?php echo $data['Product_image'];?>" alt="Product pic">
                   </div>
                </td>
                <td>
-                  <h5 name="productname" style="color:tomato;font-size:15px; font-family:'Montserrat:700',GEORGIA;margin:10px 20px;text-align:center;"><?php echo $data['Product_name'];?></h5>
+                  <h5 name="productname" style="color:#968477;font-size:15px; font-family:'Montserrat:700',GEORGIA;margin:10px 20px;text-align:center;"><?php echo $data['Product_name'];?></h5>
                </td>
                <td>
-                  <h5 name="productdescription" style="color:tomato;font-size:15px; font-family:'Montserrat:700',GEORGIA;margin:10px 20px;text-align:center;"><?php echo $data['Product_description'];?></h5>
+                  <h5 name="productdescription" style="color:#968477;font-size:15px; font-family:'Montserrat:700',GEORGIA;margin:10px 20px;text-align:center;"><?php echo $data['Product_description'];?></h5>
                </td>
                <td>
 
                  <input name="productquantity" value="<?php echo $data['Product_quantity']?>" style="width:40px;">
-                 <button type="submit" class="btn btn-primary">Update</button>
+                 <button type="submit" class="btn btn-default" style="width:70px;background-color:#968477;text-align:center;">Update</button>
                </td>
                <td>
-                 <h5 name="productprice" style="color:tomato;font-size:15px; font-family:'Montserrat:700',GEORGIA;margin:10px 20px; text-align:center;">Kshs:&nbsp;<?php echo $data['Product_price'];?></h5>
+                 <h5 name="productprice" style="color:#968477;font-size:15px; font-family:'Montserrat:700',GEORGIA;margin:10px 20px; text-align:center;">Kshs:&nbsp;<?php echo $data['Product_price'];?></h5>
                </td>
                <td>
                  <?php
@@ -62,7 +62,7 @@
 </div>
   <div class="twelve columns">
       <div class="total" style="float:right;">
-        <h3 style="margin-right:200px;">Total: <?php echo $total;?></h3>
+        <h3 style="margin-right:70px;">Total &nbsp;:&nbsp;&nbsp;<?php echo $total;?></h3>
       </div>
   </div>
 
@@ -71,30 +71,30 @@
       <a href="<?php echo base_url().'index.php/home/'?>"><button class="btn btn-default" style="width:200px;background-color:gray;">CONTINUE SHOPPING</button></a>
     </div>
     <div class="payment" style="float:right;">
-      <a href="<?php echo base_url().'index.php/paypal/payment'?>"><button class="btn btn-warning" style="width:200px;background-color:#968477;">CHECKOUT</button></a>
+      <a href="<?php echo base_url().'index.php/home/payment'?>"><button class="btn btn-warning" style="width:200px;background-color:#968477;">CHECKOUT</button></a>
     </div>
   </div>
 
 <div class="clearfix"></div>
-        <?php } else {?>
-<div class="twelve columns"style="border:1px solid yellow;">
+        <?php } else if(isset($empty_cart)) {?>
+<div class="twelve columns">
       <table class="table-striped" style="width:100%;">
-      <tr>
-        <th style="text-align:center;">Item</th>
-        <th style="text-align:center;">Product Name</th>
-        <th style="text-align:center;">Description</th>
-        <th style="text-align:center;">Quantity</th>
-        <th style="text-align:center;">Price</th>
-      </tr>
-      <tr><?php echo "Your cart is Empty";?></tr>
-      <tr>
-        <div>
-        <a href="<?php echo base_url().'index.php/home/'?>" style="color:#F2F2F2;font-size:15px; font-family:'Montserrat:700',GEORGIA;margin:10px 20px;">
-        <button class="btn btn-default">CONTINUE SHOPPING</button>
-        </div>
-      </tr>
-  <?php } ?>
+        <tr>
+          <th style="text-align:center;">Item</th>
+          <th style="text-align:center;">Product Name</th>
+          <th style="text-align:center;">Description</th>
+          <th style="text-align:center;">Quantity</th>
+          <th style="text-align:center;">Price</th>
+        </tr>
+       </table>
 </div>
- 
+<div class="twelve columns">
+   <h3 style="margin-left:10px;margin-top:10px;text-align:center;"><?php echo $empty_cart;?></h3>
+</div>
+       
+<div class="two columns" style="border-radius:2px 2px 2px 2px;padding:5px;margin-left:42%;background-color:gray;text-align:center;">
+  <a href="<?php echo base_url().'index.php/home/'?>" style="outline:0;text-decoration:none;color:#F2F2F2;font-size:15px; font-family:'Montserrat:700',GEORGIA;">CONTINUE SHOPPING</a>
+</div>
+ <?php } ?>
 
 

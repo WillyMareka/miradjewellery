@@ -74,7 +74,7 @@
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn btn-success">Submit Button</button>
+                            <button type="submit" class="btn btn-success">Edit Category</button>
                             <!-- <a href="<?php echo base_url(). 'admin/categories'?>" class="btn btn-warning">Back</a> -->
                             <a href="<?php echo base_url(). 'index.php/admin/categories'?>" class="btn btn-warning">Back</a>
                             
