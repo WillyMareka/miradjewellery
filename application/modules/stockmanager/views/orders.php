@@ -32,13 +32,13 @@
 
                        
                        
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Exports <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle right ">Download Orders<span class="caret"></span></button>
                          <ul class="dropdown-menu">
-                           <!-- <li><a href="<?php echo base_url(). 'stockmanager/allorders/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'stockmanager/allorders/excel'?>">Export to Excel</a></li> -->
+                           <!-- <li><a href="<?php echo base_url(). 'stockmanager/allorders/pdf'?>">Download as PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'stockmanager/allorders/excel'?>">Download as Excel</a></li> -->
 
-                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allorders/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allorders/excel'?>">Export to Excel</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allorders/pdf'?>">Download as PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allorders/excel'?>">Download as Excel</a></li>
                          </ul>
                        </div>
                      </div>

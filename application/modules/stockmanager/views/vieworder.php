@@ -23,8 +23,7 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
-                  <div class="col-lg-5">
+                
 
                   <?php 
                            // categorydetails acquired from the controller admin, in the function called viewcategory()
@@ -35,10 +34,10 @@
                             for ($i=0; $i <= $key ; $i++) { 
                                 
                             ?>
-
+<div class="row">
                 <!-- The form that allows viewing and editing of category It uses admin.js into a function with form ID -> #categoryediting -->
                         <form id="orderediting" name="orderediting" role="form" enctype="multipart/form-data" method="POST">
-                       
+                       <div class="col-sm-6">
                         <div class="control-group">
                                 <label class="control-label">Order ID: <?php echo $data['order_id']; ?></label>
 
@@ -101,9 +100,9 @@
                             <a href="<?php echo base_url(). 'index.php/stockmanager/orders'?>" class="btn btn-warning">Back</a>
                             
                             <!-- <button type="reset" class="btn btn-warning">Reset Button</button> -->
-
+</div>
                         </form>
-
+</div>
                         <?php 
                              }
                          }

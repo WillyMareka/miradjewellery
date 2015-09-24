@@ -18,7 +18,7 @@ class Template extends MY_Controller
 
 	{
 		// echo "You have gained access to the template controller";
-		// echo "<pre>";print_r($data);die();
+		//echo "<pre>";print_r($data);die();
 		$this->load->view('template_view', $data);
 	}
 

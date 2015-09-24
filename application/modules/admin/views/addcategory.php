@@ -36,6 +36,11 @@
                             </div>
 
                             <div class="form-group">
+                                <label>Category Image</label>
+                                <input type="file" class="form-control" id="categorypicture" name="categorypicture">
+                            </div>
+
+                            <div class="form-group">
                                 <label>Category Status</label>
                                 <select id="categorystatus" name="categorystatus" class="form-control validate[required]">
                                     <option selected value="1">Activate</option>

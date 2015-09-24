@@ -23,9 +23,7 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
-                  <div class="col-lg-5">
-
+               
                   <?php 
                            
                             foreach ($customerdetails as $key => $value) {
@@ -36,9 +34,9 @@
                                 
                             ?>
 
-               
+               <div class="row">
                         <form id="clientediting" name="clientediting" role="form" enctype="multipart/form-data" method="POST">
-                       
+                       <div class="col-sm-3">
                         <div class="control-group">
                                 <label class="control-label">Client ID: <?php echo $data['cust_id']; ?></label>
 
@@ -70,7 +68,8 @@
                             ?>
                                 
                             </div>
-
+</div>
+                        <div class="col-sm-9">
                             <div class="form-group">
                                 <label>Client Name</label>
                                 <?php 
@@ -127,17 +126,16 @@
                             <a href="<?php echo base_url(). 'index.php/admin/clients'?>" class="btn btn-warning">Back</a>
                             
                             <!-- <button type="reset" class="btn btn-warning">Reset Button</button> -->
-
+</div>
                         </form>
-
+</div>
                         <?php 
                              }
                          }
                         
                        }
                         ?>
-                  </div>
-                </div>
+                  
                 <!-- /.row -->
 
                

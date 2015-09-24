@@ -23,9 +23,6 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
-                  <div class="col-lg-5">
-
                   <?php 
                            // categorydetails acquired from the controller admin, in the function called viewcategory()
                             foreach ($orderdetails as $key => $value) {
@@ -35,6 +32,9 @@
                             for ($i=0; $i <= $key ; $i++) { 
                                 
                             ?>
+                            <div class="row ">
+                           
+                            <div class="col-sm-6">
                <div>
                 <label class="control-label">Order ID: <?php echo $data['order_id']; ?></label>
                 </div>
@@ -63,8 +63,8 @@
                        }
                         ?>
 
-                        <a href="<?php echo base_url(). 'index.php/admin/orders' ?>"><button>Back</button></a>
-                        <a href="<?php echo base_url().'index.php/admin/vieworder/'?><?php echo $data['order_id']?>"><button>Update</button></a>
+                        <a href="<?php echo base_url(). 'index.php/admin/orders' ?>"><button  class="view-back">Back</button></a>
+                        <a href="<?php echo base_url().'index.php/admin/vieworder/'?><?php echo $data['order_id']?>"><button class="view-update">Update</button></a>
                   </div>
                 </div>
                 <!-- /.row -->

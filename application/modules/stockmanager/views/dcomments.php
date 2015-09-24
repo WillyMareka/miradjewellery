@@ -33,7 +33,7 @@
                        
                        <!-- <a class="left stockmanageradd" href="<?php echo base_url(). 'stockmanager/addcomment'?>">Add <?php echo $stockmanager_subtitle?></a> -->
                        <!-- <a class="left stockmanageradd" href="<?php echo base_url(). 'index.php/stockmanager/addcomment'?>">Add <?php echo $stockmanager_subtitle?></a> -->
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Exports <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle right ">Download Deactivated Comments <span class="caret"></span></button>
                          <ul class="dropdown-menu">
                           <!--  <li><a href="<?php echo base_url(). 'stockmanager/allcomments/inactive/pdf'?>">Export to PDF</a></li>
                            <li><a href="<?php echo base_url(). 'stockmanager/allcomments/inactive/excel'?>">Export to Excel</a></li> -->

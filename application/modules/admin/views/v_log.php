@@ -3,6 +3,7 @@
 <!-- action="<?php echo base_url() . 'index.php/admin/validate_member'?>"  -->
 
 <div class="container login_panel">
+<div class="log-info">
  <?php 
  if(isset($new_user)){
   echo $new_user;
@@ -12,6 +13,7 @@ else {
  echo $new_user;
 }
 ?>  
+</div>
 <form id="form_adminlog" name="form_adminlog" role="form" enctype="multipart/form-data" method="POST">
   <div class="form-group">
     <label for="username">Email Address</label>
@@ -21,6 +23,7 @@ else {
     <label for="password">Password</label>
     <input type="password" class="form-control emplogin validate[required,maxSize[50]]" name="userpassword" maxlength="50" id="userpassword" placeholder="Enter Your Password Here">
   </div>
-  <button type="submit" class="btn btn-success">Log In</button>
+  <button type="submit" class="btn btn-success btn-log">Log In</button>
+  <a href="<?php echo base_url() . 'home/index'?>"><button class="btn btn-log">Home Page</button></a>
 </form>
 </div>

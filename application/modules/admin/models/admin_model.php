@@ -195,6 +195,16 @@ class Admin_model extends MY_Model {
         return $data->categories;
     }
 
+    function category_exists($category){
+         $this->db->where('catname',$category);
+         $query = $this->db->get('category');
+            if ($query->num_rows() > 0){
+               return true;
+            }else{
+               return false;
+            }
+      }
+
     public function dcategorynumber() {
         $sql = "SELECT COUNT(`catid`) as categories FROM category WHERE catstatus = 0";
 
@@ -402,7 +412,7 @@ class Admin_model extends MY_Model {
     function get_all_comments() {
         $sql = "SELECT 
           comm_id as 'Comment ID',
-          comm_subject as 'Comment Subject',
+          comm_email as 'Comment Subject',
           comm_message as 'Comment Message',
           comm_status as 'Comment Status',
           date_sent as 'Date Sent'
@@ -417,7 +427,7 @@ class Admin_model extends MY_Model {
     function get_all_dcomments() {
         $sql = "SELECT 
           comm_id as 'Comment ID',
-          comm_subject as 'Comment Subject',
+          comm_email as 'Comment Subject',
           comm_message as 'Comment Message',
           comm_status as 'Comment Status',
           date_sent as 'Date Sent'
@@ -455,10 +465,11 @@ class Admin_model extends MY_Model {
 
     // function that allows the adding of new category into the database
 
-    function register_category($categoryname, $categorystatus) {
+    function register_category($categoryname, $path, $categorystatus) {
         $category = array(
             // column name => data entered by user
             'catname' => $categoryname,
+            'catimage' => $path,
             'catstatus' => $categorystatus
         );
         // category is the name of the table, which acquires $category which is the array with new data

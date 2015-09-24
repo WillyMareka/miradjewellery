@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-4 col-md-offset-1">
-    <h3 class="side-heading">REGISTERED CUSTOMERS</h3>
-      <form id="loginuser" action="<?php echo base_url(). 'index.php/home/user_login'?>" name="loginuser" role="form" enctype="multipart/form-data" method="POST">
+    <h3 class="side-heading" style="width:80%;">REGISTERED CUSTOMERS</h3>
+      <form style="width:80%;"id="loginuser" action="<?php echo base_url(). 'index.php/home/user_login'?>" name="loginuser" role="form" enctype="multipart/form-data" method="POST">
         <div class="form-group">
           <label for="customer_email" class="control-label">Customer Email:</label>
           <input type="text" required class="form-control validate[required, custom[email]]" name="customer_email" id="customer_email">

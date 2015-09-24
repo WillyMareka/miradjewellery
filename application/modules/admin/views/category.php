@@ -36,7 +36,7 @@
                        
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'admin/addcategory'?>">Add <?php echo $admin_subtitle?></a> -->
                        <a class="left adminadd" href="<?php echo base_url(). 'index.php/admin/addcategory'?>">Add <?php echo $admin_subtitle?></a>
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Download <?php echo $admin_subtitle?> <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle right ">Download <?php echo $admin_subtitle?> <span class="caret"></span></button>
                          <ul class="dropdown-menu">
                            <!-- <li><a href="<?php echo base_url(). 'admin/allcategories/active/pdf'?>">Download <?php echo $admin_subtitle?> to PDF</a></li>
                            <li><a href="<?php echo base_url(). 'admin/allcategories/active/excel'?>">Download <?php echo $admin_subtitle?> to Excel</a></li> -->
@@ -54,7 +54,7 @@
                           <th>Category Status</th>
                           <th>View</th>
                           <!-- <th>Edit</th> -->
-                          <th>Deactivate</th>
+                          <th>Action</th>
                         </tr>
                        </thead>
                         <?php

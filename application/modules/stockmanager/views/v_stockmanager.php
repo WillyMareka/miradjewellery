@@ -131,13 +131,13 @@
                        <div class="btn-group pull-right table-buttons">
                        <!-- <a class="left stockmanageradd" href="<?php echo base_url(). 'stockmanager/addcategory'?>">Add Category</a> -->
                        <!-- <a class="left stockmanageradd" href="<?php echo base_url(). 'index.php/stockmanager/addcategory'?>">Add Category</a> -->
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Exports <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle right ">Download Categories<span class="caret"></span></button>
                          <ul class="dropdown-menu">
-                           <!-- <li><a href="<?php echo base_url(). 'stockmanager/allcategories/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'stockmanager/allcategories/excel'?>">Export to Excel</a></li> -->
+                           <!-- <li><a href="<?php echo base_url(). 'stockmanager/allcategories/pdf'?>">Download as PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'stockmanager/allcategories/excel'?>">Download as Excel</a></li> -->
 
-                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allcategories/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allcategories/excel'?>">Export to Excel</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allcategories/pdf'?>">Download as PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allcategories/excel'?>">Download as Excel</a></li>
                          </ul>
                        </div>
                      </div>
@@ -172,13 +172,13 @@
                        <div class="btn-group pull-right table-buttons">
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'stockmanager/addproduct'?>">Add Product</a> -->
                        <a class="left adminadd" href="<?php echo base_url(). 'index.php/stockmanager/addproduct'?>">Add Product</a>
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Export <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle right ">Download Products<span class="caret"></span></button>
                          <ul class="dropdown-menu">
-                           <!-- <li><a href="<?php echo base_url(). 'stockmanager/allcategories/pdf'?>">Save as PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'stockmanager/allcategories/excel'?>">Export to Excel</a></li> -->
+                           <!-- <li><a href="<?php echo base_url(). 'stockmanager/allcategories/pdf'?>">Download as PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'stockmanager/allcategories/excel'?>">Download as Excel</a></li> -->
 
-                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allcategories/pdf'?>">Save as PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allcategories/excel'?>">Export to Excel</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allcategories/pdf'?>">Download as PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allcategories/excel'?>">Download as Excel</a></li>
                          </ul>
                        </div>
                      </div>
@@ -192,7 +192,7 @@
                           <th>Status</th>
                           <th>View</th>
                           <!-- <th>Edit</th> -->
-                          <th>Deactivate</th>
+                          <th>Action</th>
                         </tr>
                        </thead>
                         <?php
@@ -218,13 +218,13 @@
                        
                        <!-- <a class="left stockmanageradd" href="<?php echo base_url(). 'stockmanager/addorders'?>">Add Employees</a> -->
                        <!-- <a class="left stockmanageradd" href="<?php echo base_url(). 'index.php/stockmanager/addorders'?>">Add Employees</a> -->
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Exports <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle right ">Download Orders<span class="caret"></span></button>
                          <ul class="dropdown-menu">
-                           <!-- <li><a href="<?php echo base_url(). 'stockmanager/allorders/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'stockmanager/allorders/excel'?>">Export to Excel</a></li> -->
+                           <!-- <li><a href="<?php echo base_url(). 'stockmanager/allorders/pdf'?>">Download as PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'stockmanager/allorders/excel'?>">Download as Excel</a></li> -->
 
-                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allorders/pdf'?>">Export to PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allorders/excel'?>">Export to Excel</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allorders/pdf'?>">Download as PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allorders/excel'?>">Download as Excel</a></li>
                          </ul>
                        </div>
                      </div>

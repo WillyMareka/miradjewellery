@@ -50,14 +50,19 @@
                 </li> -->
                 <li>            
                   <?php if($this->session->userdata('logged_in')){?>
+                   <a href="<?php echo base_url(). 'index.php/home/logout'?>">
+                   <i class="fa fa-power-off hidden-lg hidden-md"></i>
                     <span class="hidden-sm hidden-xs">
-                       <a href="<?php echo base_url(). 'index.php/home/logout'?>"><i class="fa fa-power-off"></i> Log Out</a>
+                      Log Out
                     </span>
+                    </a>
                   <?php }else{?>
-                  <span style=""class="hidden-sm hidden-xs">
-                       <a href="<?php echo base_url().'index.php/home/login'?>"><i class="fa fa-lock hidden-lg hidden-md" title="Login"></i> Register | Login</a>
+                  <a href="<?php echo base_url().'index.php/home/login'?>">
+                  <i class="fa fa-lock hidden-lg hidden-md" title="Login"></i>
+                    <span style="" class="hidden-sm hidden-xs">
+                        Register | Login
                     </span>
-                    
+                  </a>
                   <?php } ?>
                
                 </li>
@@ -76,48 +81,47 @@
       <div class="container">
         <div class="row">
         <!-- Search Starts -->
-          <div class="col-md-9">
-            <div id="search">
-            <form method="POST" action="<?php echo base_url().'index.php/home/searchproduct/'?>">
-               <div class="input-group">
-                <input type="text" name="search"  class="form-control input-lg" placeholder="Search for a jewellery here" style="width:80%;background:none;box-shadow:none;">
-                <input class="btn btn-lg" type="submit" value="search">
-                
-              </div>
-            </form> 
+            <div id="search_box">
+              <form method="POST" action="<?php echo base_url().'index.php/home/searchproduct/'?>">
+                <div id="searchtext">
+                    <input type="text" id="search" name="search" placeholder="Search for  products...">
+                </div>
+                <a class="search-submit-button">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </a>
+              </form>
             </div>  
-          </div>
         <!-- Search Ends -->
         <!-- Logo Starts -->
-          <div class="col-md-3">
+          <!-- <div class="col-md-3">
             <div id="logo">
               <a href="<?php echo base_url().'index.php/home'?>">Mirad Jewellery</a>
             </div>
-          </div>
+          </div> -->
         <!-- Logo Starts -->        
         </div>
       </div>
     </div>
   <!-- Main Header Ends -->
   <!-- Main Menu Starts -->
-    <nav id="main-menu" class="navbar" role="navigation">
-      <div class="container">
+    <!-- <nav id="main-menu" class="navbar" role="navigation">
+      <div class="container"> -->
       <!-- Nav Header Starts -->
-        <div class="navbar-header">
+        <!-- <div class="navbar-header">
           <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-cat-collapse">
             <span class="sr-only">Toggle Navigation</span>
             <i class="fa fa-bars"></i>
           </button>
-        </div>
+        </div> -->
       <!-- Nav Header Ends -->
       <!-- Navbar Cat collapse Starts -->
-        <div class="collapse navbar-collapse navbar-cat-collapse">
+        <!-- <div class="collapse navbar-collapse navbar-cat-collapse">
           <ul class="nav navbar-nav">
           <?php foreach ($navigations as $key => $nav) {?>
             <li><a href="<?php echo base_url().'index.php/home/product_category/'?><?php echo $nav['Category id']?>"><?php echo $nav['Category Name'];?></a></li>        
          <?php  }?>
           </ul>
-        </div>
+        </div> -->
       <!-- Navbar Cat collapse Ends -->
-      </div>
-    </nav>
+      <!-- </div>
+    </nav> -->

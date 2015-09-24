@@ -23,8 +23,8 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
-                  <div class="col-lg-5">
+                
+                
 
                   <?php 
                            // categorydetails acquired from the controller admin, in the function called viewcategory()
@@ -35,7 +35,9 @@
                             for ($i=0; $i <= $key ; $i++) { 
                                 
                             ?>
-                            <div>
+                            <div class="row ">
+                           
+                            <div class="col-sm-3">
                             <?php 
                                 if(!(isset($data['prodimage']))){?>
                                    <img style="width:250px;height:250px;" src="<?php echo assets_url. 'images/no_user_female.jpg' ?>" alt="Profile pic">
@@ -45,6 +47,8 @@
                               }
                             ?>
                             </div>
+                            <div class="col-sm-9">
+                            
                <div>
                 <label class="control-label">Product ID: <?php echo $data['prodid']; ?></label>
                 </div>
@@ -55,12 +59,13 @@
                 <label class="control-label">Product Name: <?php echo $data['prodname']; ?></label>
                 </div>
                 <div>
-                <label class="control-label">Description: <?php echo $data['proddescription']; ?></label>
-                </div>
-                <div>
                 <label class="control-label">Price: <?php echo $data['prodprice']; ?></label>
                 </div>
-                <div class="control-label">Status
+                <div>
+                <label class="control-label">Description:<br/> <?php echo $data['proddescription']; ?></label>
+                </div>
+                
+                <div class="control-label">Status:
                   <?php if($data['product_status']==1){?>
                        Active Product
                   <?php }else{?>
@@ -77,10 +82,12 @@
                        }
                         ?>
 
-                        <a href="<?php echo base_url(). 'index.php/admin/products' ?>"><button>Back</button></a>
-                        <a href="<?php echo base_url().'index.php/admin/viewproduct/'?><?php echo $data['prodid']?>"><button>Update</button></a>
+                        <a href="<?php echo base_url(). 'index.php/admin/products' ?>"><button class="view-back">Back</button></a>
+                        <a href="<?php echo base_url().'index.php/admin/viewproduct/'?><?php echo $data['prodid']?>"><button class="view-update">Update</button></a>
+                        </div>
                   </div>
-                </div>
+                  
+              
                 <!-- /.row -->
 
                

@@ -36,7 +36,7 @@
                        <!-- The add button takes you to the admin controller, into the function addcategory() -->
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'admin/addproduct'?>">Add <?php echo $admin_subtitle?></a> -->
                        
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Download <?php echo $admin_subtitle?> <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle right ">Download <?php echo $admin_subtitle?> <span class="caret"></span></button>
                          <ul class="dropdown-menu">
                            <!-- <li><a href="<?php echo base_url(). 'admin/allproducts/active/pdf'?>">Save as PDF</a></li>
                            <li><a href="<?php echo base_url(). 'admin/allproducts/active/excel'?>">Download <?php echo $admin_subtitle?> to Excel</a></li> -->
@@ -56,7 +56,7 @@
                           <th>Status</th>
                           <th>View</th>
                           <!-- <th>Edit</th> -->
-                          <th>Deactivate</th>
+                          <th>Action</th>
                         </tr>
                        </thead>
                         <?php

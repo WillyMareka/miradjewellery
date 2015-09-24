@@ -39,6 +39,9 @@ body {
 }
 
 /* Top Navigation */
+.admin-topnav{
+   background-color: #7f8c8d;
+}
 
 .top-nav {
     padding: 0 15px;
@@ -53,7 +56,7 @@ body {
     padding-top: 15px;
     padding-bottom: 15px;
     line-height: 20px;
-    color: #999;
+    color: #000;
 }
 
 .top-nav>li>a:hover,
@@ -118,7 +121,7 @@ ul.alert-dropdown {
         border: none;
         border-radius: 0;
         overflow-y: auto;
-        background-color: #222;
+        background-color: #95a5a6;
         bottom: 0;
         overflow-x: hidden;
         padding-bottom: 40px;
@@ -126,12 +129,20 @@ ul.alert-dropdown {
 
     .side-nav>li>a {
         width: 225px;
+        color:#000;
+    }
+
+    .side-nav>li>a:hover {
+        width: 225px;
+        color:#f1c40f;
+        background-color: #000;
     }
 
     .side-nav li a:hover,
     .side-nav li a:focus {
         outline: none;
         background-color: #000 !important;
+        color:#FFF;
     }
 }
 
@@ -263,12 +274,12 @@ ul.alert-dropdown {
     font-weight: bold;
  }
 
-.navbar-inverse .navbar-brand{
-    color:#e67e22;
+.admin-topnav .navbar-brand{
+    color:#000000;
 }
 
-.navbar-inverse .navbar-brand:hover{
-    color:#f39c12;
+.admin-topnav .navbar-brand:hover{
+    color:#FFFFFF;
 }
 
 .top-nav>li>a:hover{
@@ -328,4 +339,14 @@ ul.alert-dropdown {
 
  .red{
     color:#e74c3c;
+ }
+
+ .view-back{
+    background-color:#e74c3c ;
+    color:#FFF;
+ }
+
+ .view-update{
+    background-color: #16a085;
+    color:#FFF;
  }

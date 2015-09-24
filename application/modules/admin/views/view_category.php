@@ -23,8 +23,7 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
-                  <div class="col-lg-5">
+               
 
                   <?php 
                            // categorydetails acquired from the controller admin, in the function called viewcategory()
@@ -35,16 +34,21 @@
                             for ($i=0; $i <= $key ; $i++) { 
                                 
                             ?>
-                            <!-- <div>
+                             <div>
+
+                             <div class="row ">
+                           
+                            <div class="col-sm-3">
                             <?php 
                                 if(!(isset($data['catimage']))){?>
-                                   <img style="width:250px;height:250px;" src="<?php echo assets_url. 'images/no_user_female.jpg' ?>" alt="Profile pic">
+                                   <img style="width:250px;height:250px;" src="<?php echo assets_url. 'images/no_user_male.jpg' ?>" alt="Profile pic">
                                     <?php }else{ ?>
-                                  <img style="width:250px;height:250px;" src="<?php echo $data['prodimage']; ?>" alt="Profile pic">
+                                  <img style="width:250px;height:250px;" src="<?php echo $data['catimage']; ?>" alt="Profile pic">
                             <?php
                               }
                             ?>
-                            </div> -->
+                            </div>
+                            <div class="col-sm-9">
                
                 <div>
                 <label class="control-label">Category ID: <?php echo $data['catid']; ?></label>
@@ -70,8 +74,8 @@
                        }
                         ?>
 
-                        <a href="<?php echo base_url(). 'index.php/admin/categories' ?>"><button>Back</button></a>
-                        <a href="<?php echo base_url().'index.php/admin/viewcategory/'?><?php echo $data['catid']?>"><button>Update</button></a>
+                        <a href="<?php echo base_url(). 'index.php/admin/categories' ?>"><button class="view-back">Back</button></a>
+                        <a href="<?php echo base_url().'index.php/admin/viewcategory/'?><?php echo $data['catid']?>"><button class="view-update">Update</button></a>
                   </div>
                 </div>
                 <!-- /.row -->

@@ -36,7 +36,7 @@
                        
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'stockmanager/addcategory'?>">Add <?php echo $admin_subtitle?></a> -->
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'index.php/stockmanager/addcategory'?>">Add <?php echo $admin_subtitle?></a> -->
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Exports <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle right ">Download Deactivated Categories <span class="caret"></span></button>
                          <ul class="dropdown-menu">
                            <!-- <li><a href="<?php echo base_url(). 'stockmanager/allcategories/inactive/inactive/pdf'?>">Export to PDF</a></li>
                            <li><a href="<?php echo base_url(). 'stockmanager/allcategories/inactive/inactive/excel'?>">Export to Excel</a></li> -->

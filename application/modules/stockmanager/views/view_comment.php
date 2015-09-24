@@ -23,8 +23,7 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
-                  <div class="col-lg-5">
+                
 
                   <?php 
                            // categorydetails acquired from the controller admin, in the function called viewcategory()
@@ -35,14 +34,16 @@
                             for ($i=0; $i <= $key ; $i++) { 
                                 
                             ?>
-
+<div class="row ">
+                           
+                            <div class="col-sm-6">
                        
-                        
+                        <div>
                                 <label class="control-label">Comment No: <?php echo $data['comm_id']; ?></label>
-
-                            <label class="control-label">Subject: <?php echo $data['comm_subject']; ?></label>
-                            <label class="control-label">Message: <?php echo $data['comm_message']; ?></label>
-                            <label class="control-label">Date Sent: <?php echo $data['date_sent']; ?></label>
+</div><div>
+                            <label class="control-label">Subject: <?php echo $data['comm_email']; ?></label></div><div>
+                            <label class="control-label">Message: <?php echo $data['comm_message']; ?></label></div><div>
+                            <label class="control-label">Date Sent: <?php echo $data['date_sent']; ?></label></div>
                             
                          
 
@@ -61,8 +62,8 @@
                        }
                         ?>
 
-                        <a href="<?php echo base_url(). 'index.php/stockmanager/comments' ?>"><button>Back</button></a>
-                        <a href="<?php echo base_url().'index.php/stockmanager/viewcomment/'?><?php echo $data['comm_id']?>"><button>Update</button></a>
+                        <a href="<?php echo base_url(). 'index.php/stockmanager/comments' ?>"><button class="view-back">Back</button></a>
+                        <a href="<?php echo base_url().'index.php/stockmanager/viewcomment/'?><?php echo $data['comm_id']?>"><button class="view-update">Update</button></a>
                   </div>
                 </div>
                 <!-- /.row -->

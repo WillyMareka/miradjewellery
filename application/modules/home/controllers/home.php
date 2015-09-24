@@ -1,13 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+error_reporting(1);
 class Home extends MY_Controller {
 
-	//public $logged_in;
+  //public $logged_in;
 
      /* class constructor
     ____________________________________________________________*/
 
-	function __construct()
+  function __construct()
     {
         $this->load->model('home_model');
        $this->load->model('stockmanager/stockmanager_model');
@@ -28,7 +29,7 @@ class Home extends MY_Controller {
     /* index function
     ____________________________________________________________*/
 
-    function index()
+    function index($parameter=NULL)
     {
       $config=array();
       $config["base_url"]=base_url().'index.php/home/index';
@@ -76,6 +77,7 @@ class Home extends MY_Controller {
                 $data['navigations'][]=$cate;
             }
         }
+        
 
         $data['navbarcategory'] = $this->create_category_nav();
        // $data['searchresult']=$this->searchproduct();
@@ -84,12 +86,11 @@ class Home extends MY_Controller {
         $data['top_navbar1']='home/navbar_view1';
         $data['content_page']='home/v_home';
         $data['main_footer']='home/footer_view1';
-
+        // echo "<pre>";print_r($data);die();
         $this->template->call_home_template($data);
 
     }
-    
-
+  
 
     /*
     function for displaying the navigation bar
@@ -157,7 +158,7 @@ class Home extends MY_Controller {
         $this->template->call_home_template($data);
          
     }
-
+    
 
     /*displaying individual products from the database
     ___________________________________________________________*/
@@ -165,17 +166,14 @@ class Home extends MY_Controller {
     function individual_product($pid=NULL){
         if( ! empty($pid)){
           $sproduct=$this->home_model->getproduct($pid);
+          //echo "<pre>";print_r($sproduct);echo "</pre>";die();
+         //$related=$this->home_model->related_product($sproduct['category'],$pid);
         }
         else{
           redirect(base_url().'index.php/home');
         }
-        $categ=$this->home_model->get_categories();
-        if( ! empty($categ)){
-            foreach ($categ as $key => $cate) {
-                $data['navigations'][]=$cate;
-            }
-        }
-        //echo "<pre>";print_r($sproduct);echo "</pre>";die();
+ 
+       
         $data['single_product']=$sproduct;
         //echo "<pre>";print_r($sproduct);echo "</pre>";die();
         $data['navbarcategory'] = $this->create_category_nav();
@@ -239,130 +237,123 @@ class Home extends MY_Controller {
           $this->login();
          }
     }
+    /*function  for generating receipt
+    ______________________________________________*/
 
     function getReceiptNumber(){
     $result = $this->home_model->generateReceipt();
           foreach ($result as $key => $value) {
             foreach ($value as $key2 => $val) {
-              //generate reciept and places it in the variable -> $val 
+              //generate reciept and places it in the variable -> $val
             }
           }
           return $val;
   }
 
-  function payment(){
-            $cust_id = $this->session->userdata('cust_id');
-            $receipt = $this->getReceiptNumber();
-            $receipt_no = 'MI';
-            $receipt_no .= mt_rand(10,90);
-            $receipt_no .= $receipt;
-            $receipt_no .= mt_rand(10,90);
-            $receipt_no .= 'RAD';
+    /*function  for processing  customer payment
+    ___________________________________________________________*/
 
-            $categ=$this->home_model->get_categories();
+    function payment(){
+          $cust_id = $this->session->userdata('cust_id');
+          $receipt = $this->getReceiptNumber();
+          $receipt_no = 'MI';
+          $receipt_no .= mt_rand(10,90);
+          $receipt_no .= $receipt;
+          $receipt_no .= mt_rand(10,90);
+          $receipt_no .= 'RAD';
+
+          $categ=$this->home_model->get_categories();
+      if(!empty($categ)){
+          foreach ($categ as $key => $cate) {
+              $data['navigations'][]=$cate;
+          }
+      }
+          //echo "<pre>";print_r($result);echo"</pre>";die();
+          //
+          if($cust_id){
+             $products1 = $this->home_model->get_cart($cust_id);
+             
+           foreach ($products1 as $key => $product1) {
+              $prodid=$product1['prod_id'];
+             
+             
+
+
+              $products = $this->home_model->get_price($prodid);
+              foreach ($products as $key => $order) {
+                 $prod_det['product'][] = $order;
+                 $data['product_details']=$prod_det;
+              }
+             
+           }
+           //
+           $result = $this->home_model->generate_order($cust_id,$receipt_no);
+
+            foreach ($products as $key => $product) {
+              $orders = $this->home_model->get_orders($cust_id);
+                foreach ($orders as $key => $order) {
+                   $order_det['order'][] = $order;
+                   $data['order_details']=$order_det;
+                }
+            }
+              
+               $data['top_navbar1']='home/navbar_view1';
+               $data['content_page']='home/v_order';
+               $data['main_footer']='home/footer_view1';
+                //echo "<pre>";print_r($data);echo"</pre>";die();
+               $this->template->call_home_template($data);
+
+          }else{
+
+               echo "Order and Purchase failed...Contact Administrator";
+               $data['top_navbar1']='home/navbar_view1';
+               $data['content_page']='home/cartpage';
+               $data['main_footer']='home/footer_view1';
+                //echo "<pre>";print_r($data);echo"</pre>";die();
+              $this->template->call_home_template($data);
+          
+          }
+}
+
+    /* search function
+    _____________________________________________________________*/
+
+    function searchproduct ($search=Null){
+        $search_term=trim($this->input->post('search'));
+
+        if(empty($search_term)){
+          redirect('index.php/home');
+        }
+        else { 
+          //redirect('index.php/home/searchproduct/'.$search_term);
+          $data['search_result']=$this->home_model->get_results($search_term);
+        }
+
+        $categ=$this->home_model->get_categories();
         if(!empty($categ)){
             foreach ($categ as $key => $cate) {
                 $data['navigations'][]=$cate;
             }
         }
-            //echo "<pre>";print_r($result);echo"</pre>";die();
-            //
-            if($cust_id){
-               $products1 = $this->home_model->get_cart($cust_id);
-                
-             foreach ($products1 as $key => $product1) {
-                $prodid=$product1['prod_id'];
-                
-                
+        
 
-
-                $products = $this->home_model->get_price($prodid);
-                foreach ($products as $key => $order) {
-                   $prod_det['product'][] = $order;
-                   $data['product_details']=$prod_det;
-                }
-                
-             }
-             //
-             $result = $this->home_model->generate_order($cust_id,$receipt_no);
-
-              foreach ($products as $key => $product) {
-                $orders = $this->home_model->get_orders($cust_id);
-                  foreach ($orders as $key => $order) {
-                     $order_det['order'][] = $order;
-                     $data['order_details']=$order_det;
-                  }
-              }
-                 
-                 $data['top_navbar1']='home/navbar_view1';
-                 $data['content_page']='home/v_order';
-                 $data['main_footer']='home/footer_view1';
-                  //echo "<pre>";print_r($data);echo"</pre>";die();
-                 $this->template->call_home_template($data);
-
-            }else{
-
-                 echo "Order and Purchase failed...Contact Administrator";
-                 $data['top_navbar1']='home/navbar_view1';
-                 $data['content_page']='home/cartpage';
-                 $data['main_footer']='home/footer_view1';
-                  //echo "<pre>";print_r($data);echo"</pre>";die();
-                 $this->template->call_home_template($data);
-            }
-
-
-    }
-
-    /* search function
-    _____________________________________________________________*/
-    function searchproduct(){
-        $search_term=$this->input->post('search');
-        //echo "<pre>";print_r($search_term);echo"</pre>";
-        $data='';
-        $results=$this->home_model->get_results($search_term);
-        //echo "<pre>";print_r($results);echo"</pre>";
-        if($results==''){
-            $data['av_products'][]="Product not found";
-            //echo "<pre>";print_r("not found");echo"</pre>";
-        }
-        else{
-           //echo "<pre>";print_r("found");echo"</pre>";
-            foreach ($results as $key => $prod) {
-                $data['av_products'][]=$prod;
-            }
-        }
+        $data['navbarcategory'] = $this->create_category_nav();
+       // $data['searchresult']=$this->searchproduct();
+       // $data['products']=$this->allproduct();
 
         $data['top_navbar1']='home/navbar_view1';
-        $data['content_page']='home/index';
+        $data['content_page']='home/v_search';
         $data['main_footer']='home/footer_view1';
-             //echo "<pre>";print_r($data);echo"</pre>";die();
+        // echo "<pre>";print_r($data);die();
         $this->template->call_home_template($data);
+
+       
     }
-
-
    
     /* login function
     ____________________________________________________________*/
 
     function login(){
-         $products=$this->home_model->category_product($catid=Null);
-       //echo "<pre>";print_r($products);echo "</pre>";die();
-         $categ=$this->home_model->get_categories();
-        if(!empty($categ)){
-            foreach ($categ as $key => $cate) {
-                $data['navigations'][]=$cate;
-            }
-        }
-        if( !empty( $products)){
-            foreach ($products as $key => $product) {
-            $prod_cat['prod_category'][]=$product;
-            // echo "<pre>";print_r($product);echo "</pre>";die();
-            }
-         
-           $data['all_products']=$prod_cat;
-           //echo "<pre>";print_r($prod_cat);echo "</pre>";die();
-        }
-
         $data['titles'] = $this->get_titles();
 
         $data['navbarcategory'] = $this->create_category_nav();
@@ -448,44 +439,39 @@ class Home extends MY_Controller {
 
             $insert = $this->home_model->add_customer($customer);
 
-            redirect(base_url().'index.php/home/login');
-            /*mwanzo wa mailgun
-            //echo "<pre>";print_r("reached0");echo "</pre>";die();
-
-                 require_once 'init.php';
-                 $name = $this->input->post('customername');
-                  $email = $this->input->post('customeremail');
+           // 
+                //mwanzo wa email
+       
+          echo "<pre>";print_r("reached0");echo "</pre>"; 
+                 $data['f_name']= $this->input->post('customername');
+                  $data['email_address'] = $this->input->post('customeremail');
             
-                if(isset($name , $email))
-                {
-            
+        $fields =  array('email_address' => $data['email_address'],
+        'message' => "Hello , Please  <a href='".base_url()."home/user_registered/$hash'>Click here </a> to confirm your account</p>",
+        'subject' => 'Mirad Jewellery Confirmation');
+            $url = 'http://www.symatechlabs.com/chicafrique/sendmail/API_Send';
+                $postvars = http_build_query($fields);
 
-                  $validate = $mailgunValidate->get('address/validate', ['address' => $email])->http_response_body;
-           // echo "<pre>";print_r("reached0");echo "</pre>";
+    // open connection 
+    $ch = curl_init();
+    
+    // set the url, number of POST vars, POST data
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, count($fields));
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postvars);
 
-                 if($validate->is_valid){
-                    $hash = $mailgunOptIn->generateHash(MAILGUN_LIST, MAILGUN_SECRET, $email);
-                        $mailgun->sendMessage(MAILGUN_DOMAIN, [
-                           'from'  => 'ian.leslie18@gmail.com',
-                           'to'   => $email,
-                           'subject' => 'Confirm your account',
-                           'html'   => "Hello {$name} , Please  <a href='".base_url()."home/user_registered/$hash'>Click here </a> to confirm your account</p>"
+    // execute post
+    $sent = curl_exec($ch);
 
+    // close connection
+    curl_close($ch);
 
-                          ]);
-            //echo "<pre>";print_r("reached0");echo "</pre>";
-
-                        $mailgun -> post('lists/'. MAILGUN_LIST .'/members',[
-                              'name' => $name,
-                              'address' => $email,
-                              'subscribed'=> 'no'
-                          ]);
-                        header('location ./');
-            //echo "<pre>";print_r("reached0");echo "</pre>";die();
-
-                 }
-                }*/
-
+    if($sent){
+      redirect(base_url().'index.php/home/login');
+           
+    }
+     //mwisho wa email
+           
         }
     }
     /* function for redirecting to the user
@@ -518,6 +504,14 @@ class Home extends MY_Controller {
         $data['main_footer']='home/footer_view1';
 
         $this->template->call_single_template($data);
+    }
+
+    function getlocation(){
+        $data['top_navbar1']='home/navbar_view1';
+        $data['content_page']='home/v_location';
+        $data['main_footer']='home/footer_view1';
+        $this->template->call_home_template($data);
+
     }
 
     /*getting user comments
@@ -556,7 +550,7 @@ class Home extends MY_Controller {
             return TRUE;
         }
     }
-	
+  
 }
 
 /* End of file welcome.php */

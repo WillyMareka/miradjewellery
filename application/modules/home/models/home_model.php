@@ -12,76 +12,7 @@ class Home_model extends MY_Model {
     
     /* get all active  categories from  the  database
     _______________________________________________________*/
-    function generateReceipt()
-  {
-        $query = "SELECT MAX(order_id) FROM orders";
-            try {
-                $this->dataSet = $this->db->query($query);
-                $this->dataSet = $this->dataSet->result_array();
-            }
-            catch(exception $ex) {
-            }
-            
-            return $this->dataSet;
-  }
 
-  function generate_order($cust_id,$receipt_no){
-    
-        $products = $this->get_cart($cust_id);
-
-        foreach ($products as $key => $product) {
-                $prodid=$product['prod_id'];
-                $quantity=$product['quantity'];
-                //$prodprice=$product['prodprice'];
-
-                $price = $this->get_price($prodid);
-
-                foreach ($price as $key => $data) {
-                 $prodprice = $data['prodprice'];
-
-                 $subtotal = $prodprice * $quantity;
-                 //echo "<pre>";print_r($subtotal);echo "</pre>";die();
-                 $order=array(
-                  'cust_id'=>$cust_id,
-                  'order_no'=>$receipt_no,
-                  'prodid'=>$prodid,
-                  'prodprice'=>$prodprice,
-                  'quantity'=>$quantity,
-                  'subtotal'=>$subtotal
-                  );
-                  //echo "<pre>";print_r($order);echo "</pre>";die();
-                   $insert=$this->db->insert('orders', $order);
-                }
-                
-        }
-
-        $sql2 = "DELETE FROM cart WHERE cust_id = $cust_id";
-
-        $result = $this->db->query($sql2);
-        return $result;
-      
-     
-  }
-
-  function get_cart($cust_id){
-    $sql = "SELECT * FROM cart WHERE cust_id = '$cust_id'";
-        $result = $this->db->query($sql);
-        return $result->result_array();
-  }
-
-   
-
-  function get_price($prodid){
-    $sql = "SELECT * FROM products WHERE prodid = '$prodid' ";
-        $result = $this->db->query($sql);
-        return $result->result_array();
-  }
-
-  function get_orders($id) {
-        $sql = "SELECT * FROM orders WHERE cust_id = '$id' ";
-        $result = $this->db->query($sql);
-        return $result->result_array();
-    }
 
     public function get_categories(){
 
@@ -118,8 +49,6 @@ class Home_model extends MY_Model {
         return $data->result_array();
     }
 
-    
-
     /*getting the count of all product
     _____________________________________________*/
     
@@ -145,96 +74,79 @@ class Home_model extends MY_Model {
     /*getting  products  that belongs  to a given category
     _______________________________________________________*/
 
-    public function category_product($catid=NULL){
+    public function category_product($catid){
+        $sql="SELECT 
+            p.prodid, 
+            p.prodname,
+            p.proddescription, 
+            p.prodprice,
+            p.prodimage, 
+            c.catimage 
+          FROM  products p 
+          INNER JOIN category c
+          ON p.catid= c.catid AND c.catid ='$catid'";
 
-            if( ! empty($catid)){
-            $sql="SELECT 
-            p.prodid AS 'Product ID',
-            p.prodname AS 'Product Name',
-            p.proddescription AS 'Description',
-            p.prodprice AS 'Price',
-            p.prodimage AS 'image'
-            FROM products p, category c
-            WHERE p.catid= c.catid AND c.catid ='$catid'";
-
-               $result=$this->db->query($sql);
-                if($result->num_rows()> 0){
-                  return $result->result_array();
-              }
-              else{
-                  $result="Sorry, no result for this combination, please try something else";
-                  return $result;
-              }
-
-            //echo "<pre>";print_r($result);echo "</pre>";die();
-            
-            }
-
-            else if( empty($catid)){
-             $sql="SELECT 
-            p.prodid AS 'Product ID',
-            p.prodname AS 'Product Name',
-            p.proddescription    AS 'Description',
-            p.prodprice AS 'Price',
-            p.prodimage AS 'Image'
-            FROM products p, category c
-            WHERE p.catid= c.catid";
-
-            $result=$this->db->query($sql);
-
-            //echo "<pre>";print_r($result);echo "</pre>";die();
-            return $result->result_array();
-            }    
-    
+             $results=$this->db->query($sql);
+            return $results->result_array();
+            /*  if($results->num_rows()> 0){
+                foreach ($results->result() as $result) {
+                          $data[]=$result;
+                        }
+                  return $data;
+                 }
+          return false;*/
     }
     
     /* search for product from the  database
     _____________________________________________________*/
 
     public function get_results($search){
-        if (! empty($search)) {
-          $sql="SELECT prodname 
-                      FROM products
-                      WHERE prodname LIKE '%search%';";
-                       $result=$this->db->query($sql);
-                      return $result->result_array();
+
+      $this->db->like('prodname',$search);
+      $results  = $this->db->get('products');
+      if($results ->num_rows()>0){
+            foreach ($results ->result() as $result) {
+              $data[]=$result;
+            }
+            return $data;
         }
-        else{
-          $result="";
-          return $result;
-        }
-       
+        return false;
     }
 
-    /*getting all the products  from the database
+    /* getting individual product  from the database
     ______________________________________________________*/
 
-    public function getproduct( $pid=NULL){
-
-        //$data=array();
-
-        if( ! empty($pid)){
-            //get specific product
+    public function getproduct($pid){
             $sql="SELECT 
             p.prodid AS 'Product ID',
             p.prodname AS 'Product Name',
             p.proddescription    AS 'Description',
             p.prodprice AS 'Price',
+            p.catid AS 'category',
             p.prodimage AS 'Image'
-            FROM products p, category c
-            WHERE p.catid= c.catid AND p.prodid ='$pid' LIMIT 1";
+            FROM products p
+            INNER JOIN category c
+            ON p.catid= c.catid AND p.prodid ='$pid' LIMIT 1";
 
             $result=$this->db->query($sql);
-            if($result->num_rows() > 0){
-              return $result->result_array();
-            }   
-            else{
-                //return true;
-                }
-        }
-        else{
-           // $this->category_product();
-        }
+            if($result){
+              $product_details=$result->result_array();
+              return $product_details;
+            }
+        return false;
+    }
+     /* getting related product  from the database
+    ______________________________________________________*/
+    public function related_product($catid,$pid){
+      $sql="SELECT
+        p.prodname 
+        p.prodprice
+        p.catid
+        p.prodimage AS 'Image'
+        FROM products p, category c
+        WHERE p.catid=$catid AND p.prodid !=$pid ORDER BY p.prodname";
+        $result=$this->db->query( $sql);
+        return $result->result_array();
     }
 
     /*inserting user comment
@@ -350,6 +262,77 @@ class Home_model extends MY_Model {
       return $insert;
     }
 
+    function generateReceipt()
+  {
+        $query = "SELECT MAX(order_id) FROM orders";
+            try {
+                $this->dataSet = $this->db->query($query);
+                $this->dataSet = $this->dataSet->result_array();
+            }
+            catch(exception $ex) {
+            }
+           
+            return $this->dataSet;
+  }
+
+  function generate_order($cust_id,$receipt_no){
+   
+        $products = $this->get_cart($cust_id);
+
+        foreach ($products as $key => $product) {
+                $prodid=$product['prod_id'];
+                $quantity=$product['quantity'];
+                //$prodprice=$product['prodprice'];
+
+                $price = $this->get_price($prodid);
+
+                foreach ($price as $key => $data) {
+                 $prodprice = $data['prodprice'];
+
+                 $subtotal = $prodprice * $quantity;
+                 //echo "<pre>";print_r($subtotal);echo "</pre>";die();
+                 $order=array(
+                  'cust_id'=>$cust_id,
+                  'order_no'=>$receipt_no,
+                  'prodid'=>$prodid,
+                  'prodprice'=>$prodprice,
+                  'quantity'=>$quantity,
+                  'subtotal'=>$subtotal
+                  );
+                  //echo "<pre>";print_r($order);echo "</pre>";die();
+                   $insert=$this->db->insert('orders', $order);
+                }
+               
+        }
+
+        $sql2 = "DELETE FROM cart WHERE cust_id = $cust_id";
+
+        $result = $this->db->query($sql2);
+        return $result;
+     
+    
+  }
+
+  function get_cart($cust_id){
+    $sql = "SELECT * FROM cart WHERE cust_id = '$cust_id'";
+        $result = $this->db->query($sql);
+        return $result->result_array();
+  }
+
+  
+
+  function get_price($prodid){
+    $sql = "SELECT * FROM products WHERE prodid = '$prodid' ";
+        $result = $this->db->query($sql);
+        return $result->result_array();
+  }
+
+  function get_orders($id) {
+        $sql = "SELECT * FROM orders WHERE cust_id = '$id' ";
+        $result = $this->db->query($sql);
+        return $result->result_array();
+    }
+    
     public function opencart($custid){
       $sql="SELECT cu.cust_id as Customer_id,
        p.prodid as Product_id,

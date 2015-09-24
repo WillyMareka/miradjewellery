@@ -546,6 +546,11 @@ class Admin extends MY_Controller {
     function addcategory()
     {
 
+        //$this->form_validation->set_rules('categoryname','Category','trim|required|valid_email|is_unique[category.catname]');
+     
+      // if($this->form_validation->run()==FALSE){
+      //       $this->addcategory();
+      // }else{
         $data['dclientnumber'] = $this->getdclientnumber();
         $data['dcategorynumber'] = $this->getdcategorynumber();
         $data['dcommentnumber'] = $this->demployeenumber();
@@ -554,14 +559,13 @@ class Admin extends MY_Controller {
         $this->log_check();
         $data['admin_title'] = 'Manager';
         $data['admin_subtitle'] = 'Add Category';
-        $data['admin_navbar'] = 'admin/header';//header.php file
-        $data['admin_sidebar'] = 'admin/sidebar';//sidebar.php file
-        $data['admin_content'] = 'admin/addcategory';//addcategory.php file
-        $data['admin_footer'] = 'admin/footer';//footer.php file
+        $data['admin_navbar'] = 'admin/header';
+        $data['admin_sidebar'] = 'admin/sidebar';
+        $data['admin_content'] = 'admin/addcategory';
+        $data['admin_footer'] = 'admin/footer';
 
-        
-        
         $this->template->call_admin_template($data);
+      // }
     }
 
     function addemployee()
@@ -659,8 +663,12 @@ class Admin extends MY_Controller {
                 //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'admin/viewclient/'.$data['Customer ID'].'"><i class="fa fa-eye black"></i></a></td>';
                  $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/clientdetail/'.$data['Customer ID'].'"><i class="fa fa-eye black"></i></a></td>';
            
-                        //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'admin/clientupdate/clientdelete/'.$data['Customer ID'].'"><i class="fa fa-trash black"></i></td>';
+                        if($data['Customer Status'] == 1){
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/admin/clientupdate/clientdelete/'.$data['Customer ID'].'"><i class="fa fa-trash black"></i></td>';
+               }else if($data['Customer Status'] == 0){
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Activate Profile" href = "'.base_url().'index.php/admin/clientupdate/clientrestore/'.$data['Customer ID'].'"><i class="fa fa-recycle black"></i></td>';
+                }
+                
                   
                 $display .= '</tr>';
 
@@ -732,7 +740,7 @@ class Admin extends MY_Controller {
                 break;
 
              case 'inactive':
-                
+                $orders = $this->admin_model->get_all_dorders();
                 break;
             
             default:
@@ -788,13 +796,19 @@ class Admin extends MY_Controller {
                 $display .= '<td class="centered">'.$data['Product Price'].'</td>';
                 $display .= '<td class="centered">'.$data['Customer ID'].'</td>';
                 $display .= '<td class="centered">'.$state.'</td>';
-                $display .= '<td class="centered">'.$data['Date Ordered'].'</td>';
+                $date = date("d-m-Y",strtotime($data['Date Ordered']));
+                $display .= '<td class="centered">'.$date.'</td>';
+                
 
                 //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'admin/vieworder/'.$data['Order ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/orderdetail/'.$data['Order ID'].'"><i class="fa fa-eye black"></i></a></td>';
               
-                       // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Click if Delivered" href = "'.base_url().'admin/orderupdate/orderdelete/'.$data['Order ID'].'"><i class="fa fa-truck black"></i></td>';
+                        if($data['Order Status'] == 0){
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Click if Delivered" href = "'.base_url().'index.php/admin/orderupdate/orderdelete/'.$data['Order ID'].'"><i class="fa fa-truck black"></i></td>';
+               }else if($data['Order Status'] == 1){
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Click if not Delivered" href = "'.base_url().'index.php/admin/orderupdate/orderrestore/'.$data['Order ID'].'"><i class="fa fa-recycle black"></i></td>';
+                }
+                
                 
               
                 $display .= '</tr>';
@@ -803,7 +817,7 @@ class Admin extends MY_Controller {
             
             case 'excel':
                
-                 array_push($row_data, array($data['Order ID'], $data['Order No'], $data['Product ID'], $data['Product Price'], $data['Customer ID'], $states, $data['Date Ordered'])); 
+                 array_push($row_data, array($data['Order ID'], $data['Order No'], $data['Product ID'], $data['Product Price'], $data['Customer ID'], $states, $date)); 
 
                 break;
 
@@ -818,7 +832,7 @@ class Admin extends MY_Controller {
                 $html_body .= '<td>'.$data['Product Price'].'</td>';
                 $html_body .= '<td>'.$data['Customer ID'].'</td>';
                 $html_body .= '<td>'.$states.'</td>';
-                $html_body .= '<td>'.$data['Date Ordered'].'</td>';
+                $html_body .= '<td>'.$date.'</td>';
                 $html_body .= "</tr></ol>";
 
                 break;
@@ -916,8 +930,12 @@ class Admin extends MY_Controller {
                 //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'admin/viewcomment/'.$data['Comment ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/commentdetail/'.$data['Comment ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 
-                         //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'admin/commentupdate/commentdelete/'.$data['Comment ID'].'"><i class="fa fa-trash black"></i></td>';
+                        if($data['Comment Status'] == 1){
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/admin/commentupdate/commentdelete/'.$data['Comment ID'].'"><i class="fa fa-trash black"></i></td>';
+               }else if($data['Comment Status'] == 0){
+               $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Activate Profile" href = "'.base_url().'index.php/admin/commentupdate/commentrestore/'.$data['Comment ID'].'"><i class="fa fa-recycle black"></i></td>';
+                }
+                
                 
                $display .= '</tr>';
 
@@ -1042,8 +1060,11 @@ class Admin extends MY_Controller {
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/categorydetail/'.$data['Category ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 
                         //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'admin/catupdate/catdelete/'.$data['Category ID'].'"><i class="fa fa-trash black"></i></td>';
+                  if($data['Category Status'] == 1){
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/admin/catupdate/catdelete/'.$data['Category ID'].'"><i class="fa fa-trash black"></i></td>';
-                
+               }else if($data['Category Status'] == 0){
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Activate Profile" href = "'.base_url().'index.php/admin/catupdate/catrestore/'.$data['Category ID'].'"><i class="fa fa-recycle black"></i></td>';
+                }
                     
                 $display .= '</tr>';
 
@@ -1185,8 +1206,12 @@ class Admin extends MY_Controller {
                 //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'admin/viewemployee/'.$data['Employee ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/employeedetail/'.$data['Employee ID'].'"><i class="fa fa-eye black"></i></a></td>';
               
-                       //$display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'admin/empupdate/empdelete/'.$data['Employee ID'].'"><i class="fa fa-trash black"></i></td>';
+                       if($data['Employee Status'] == 1){
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/admin/empupdate/empdelete/'.$data['Employee ID'].'"><i class="fa fa-trash black"></i></td>';
+               }else if($data['Employee Status'] == 0){
+               $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Activate Profile" href = "'.base_url().'index.php/admin/empupdate/emprestore/'.$data['Employee ID'].'"><i class="fa fa-recycle black"></i></td>';
+                }
+                
                 
                 
                 $display .= '</tr>';
@@ -1262,7 +1287,7 @@ class Admin extends MY_Controller {
         $employeestatus = $this->input->post('employeestatus');
 
 
-        $path = base_url().'uploads/users/';
+        $path = base_url().'uploads/employees/';
         //$path = base_url().'index.php/uploads/users/';
                $config['upload_path'] = 'uploads/employees/';
                //$config['upload_path'] = 'index.php/uploads/employees/';
@@ -1294,26 +1319,69 @@ class Admin extends MY_Controller {
 
         return $insert;
         }
-    
+       
       }
 
+      function category_exists($category)
+       {
+         $this->admin_model->category_exists($category);
+       }
+ 
 
       function categoryregistration(){
-         //echo"reaching";exit;
         $this->form_validation->set_rules('categoryname', 'Category Name', 'trim|required|xss_clean|is_unique[category.catname]');
-        
+        //$this->form_validation->set_rules('categoryname', 'Category Name', 'callback_category_exists');
+
+        if($this->form_validation->run()==FALSE){
+             echo json_encode(array(
+                          'level' => 'active',
+                          'state' => 'error',
+                          'subject' => 'Duplicate',
+                          'message'=> 'Category Already Exists'
+                          ));
+        }
+        else{
         $categoryname = $this->input->post('categoryname');
         $categorystatus = $this->input->post('categorystatus');
 
+         $path = base_url().'uploads/categories/';
+        //$path = base_url().'index.php/uploads/categories/';
+               $config['upload_path'] = 'uploads/categories/';
+               //$config['upload_path'] = 'index.php/uploads/categories/';
+               $config['allowed_types'] = 'jpeg|jpg|png|gif';
+               $config['encrypt_name'] = TRUE;
+               $this->load->library('upload', $config);
+               $this->upload->initialize($config);
 
+           if ( ! $this->upload->do_upload('categorypicture'))
+            {
+               $error = array('error' => $this->upload->display_errors());
+
+               print_r($error);die;
+            }
+             else
+             {
+               
+                $data = array('upload_data' => $this->upload->data());
+                 foreach ($data as $key => $value) {
+                  //print_r($data);die;
+                  $path = base_url().'uploads/categories/'.$value['file_name'];
+                  //$path = base_url().'index.php/uploads/employees/'.$value['file_name'];
+                
+                  }
         // transfers data into the admin_model.php in the models for admin module into a function called reigister_category() with parameters
-        $insert = $this->admin_model->register_category($categoryname, $categorystatus);
+        $insert = $this->admin_model->register_category($categoryname, $path, $categorystatus);
 
-        return $insert;
+        echo json_encode(array(
+                          'level' => 'active',
+                          'state' => 'success',
+                          'subject' => 'Success',
+                          'message'=> 'Category Added'
+                          ));
         
-    
+        }
       }
-      
+    }
 
 
       // enables the editing of the selected category
@@ -1717,7 +1785,7 @@ class Admin extends MY_Controller {
                     break;
 
                 case 'catrestore':
-                    
+                    $this->categories();
                     break;
                 
                 default:
@@ -1964,8 +2032,12 @@ class Admin extends MY_Controller {
                 // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'admin/viewproduct/'.$data['Product ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/admin/productdetail/'.$data['Product ID'].'"><i class="fa fa-eye black"></i></a></td>';
           
-                        // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'admin/product_status/proddelete/'.$data['Product ID'].'"><i class="fa fa-trash black"></i></td>';
+                        if($data['Product Status'] == 1){
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/admin/product_status/proddelete/'.$data['Product ID'].'"><i class="fa fa-trash black"></i></td>';
+               }else if($data['Product Status'] == 0){
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Activate Profile" href = "'.base_url().'index.php/admin/product_status/prodrestore/'.$data['Product ID'].'"><i class="fa fa-recycle black"></i></td>';
+                }
+                
                 
                 // button below used for editing the specific category. Goes to admin controller into function called catupdate(), passing the type of update and the category id as parameter
                 $display .= '</tr>';

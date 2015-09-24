@@ -23,8 +23,7 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
-                  <div class="col-lg-5">
+                
 
                   <?php 
                            // categorydetails acquired from the controller admin, in the function called viewcategory()
@@ -35,6 +34,9 @@
                             for ($i=0; $i <= $key ; $i++) { 
                                 
                             ?>
+                            <div class="row ">
+                           
+                            <div class="col-sm-3">
                             <div>
                             <?php 
                                 if(!(isset($data['cust_picture']))){
@@ -57,6 +59,8 @@
                               }
                             ?>
                             </div>
+                            </div>
+                            <div class="col-sm-9">
                <div>
                 <label class="control-label">Customer ID: <?php echo $data['cust_id']; ?></label>
                 </div>
@@ -83,8 +87,8 @@
                        }
                         ?>
 
-                        <a href="<?php echo base_url(). 'index.php/admin/clients' ?>"><button>Back</button></a>
-                        <a href="<?php echo base_url().'index.php/admin/viewclient/'?><?php echo $data['cust_id']?>"><button>Update</button></a>
+                        <a href="<?php echo base_url(). 'index.php/admin/clients' ?>"><button class="view-back">Back</button></a>
+                        <a href="<?php echo base_url().'index.php/admin/viewclient/'?><?php echo $data['cust_id']?>"><button class="view-update">Update</button></a>
                   </div>
                 </div>
                 <!-- /.row -->

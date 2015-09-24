@@ -32,7 +32,7 @@
 
                        
                        
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Exports <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle right ">Download Deactivated Clients <span class="caret"></span></button>
                          <ul class="dropdown-menu">
                           <!--  <li><a href="<?php echo base_url(). 'admin/allclients/inactive/pdf'?>">Export to PDF</a></li>
                            <li><a href="<?php echo base_url(). 'admin/allclients/inactive/excel'?>">Export to Excel</a></li>

@@ -12,7 +12,7 @@
                             <li class="active">
                                  <i class="fa fa-dashboard"></i>
                                    <!-- <a class="crumbs" href="<?php echo base_url(). 'admin'?>">Manager Dashboard</a> -->
-                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/admin/dashboard'?>">Manager Dashboard</a>
+                                   <a class="crumbs" href="<?php echo base_url(). 'index.php/admin'?>">Manager Dashboard</a>
                                    <?php if($passmessage){ ?>
                                    <!-- <a href="<?php echo base_url().'admin/viewemployee/'.$this->session->userdata('emp_id')?>" class="animated flash red"> <?php echo $passmessage ?> </a> -->
                                    <a href="<?php echo base_url().'index.php/admin/viewemployee/'.$this->session->userdata('emp_id')?>" class="animated flash red"> <?php echo $passmessage ?> </a>
@@ -131,7 +131,7 @@
                        <div class="btn-group pull-right table-buttons">
                        <a class="left adminadd" href="<?php echo base_url(). 'index.php/admin/addcategory'?>">Add Category</a>
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'index.php/admin/addcategory'?>">Add Category</a> -->
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Download Categories <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle right ">Download <?php echo $admin_subtitle?> <span class="caret"></span></button>
                          <ul class="dropdown-menu">
                            <!-- <li><a href="<?php echo base_url(). 'admin/allcategories/pdf'?>">Download <?php echo $admin_subtitle?> to PDF</a></li>
                            <li><a href="<?php echo base_url(). 'admin/allcategories/excel'?>">Download <?php echo $admin_subtitle?> to Excel</a></li> -->
@@ -149,7 +149,7 @@
                           <th>Category Status</th>
                           <th>View</th>
                           <!-- <th>Edit</th> -->
-                          <th>Deactivate</th>
+                          <th>Action</th>
                         </tr>
                        </thead>
                         <?php
@@ -172,7 +172,7 @@
                        <div class="btn-group pull-right table-buttons">
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'admin/addproduct'?>">Add Product</a> -->
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'index.php/admin/addproduct'?>">Add Product</a> -->
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Download Products <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle right ">Download <?php echo $admin_subtitle?> <span class="caret"></span></button>
                          <ul class="dropdown-menu">
                            <!-- <li><a href="<?php echo base_url(). 'admin/allcategories/pdf'?>">Save as PDF</a></li>
                            <li><a href="<?php echo base_url(). 'admin/allcategories/excel'?>">Download <?php echo $admin_subtitle?> to Excel</a></li> -->
@@ -192,7 +192,7 @@
                           <th>Status</th>
                           <th>View</th>
                           <!-- <th>Edit</th> -->
-                          <th>Deactivate</th>
+                          <th>Action</th>
                         </tr>
                        </thead>
                         <?php
@@ -218,7 +218,7 @@
                        
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'admin/addemployee'?>">Add Employees</a> -->
                        <a class="left adminadd" href="<?php echo base_url(). 'index.php/admin/addemployee'?>">Add Employees</a>
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Download Employees <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle right ">Download <?php echo $admin_subtitle?> <span class="caret"></span></button>
                          <ul class="dropdown-menu">
                            <!-- <li><a href="<?php echo base_url(). 'admin/allemployees/pdf'?>">Download <?php echo $admin_subtitle?> to PDF</a></li>
                            <li><a href="<?php echo base_url(). 'admin/allemployees/excel'?>">Download <?php echo $admin_subtitle?> to Excel</a></li> -->
@@ -238,7 +238,7 @@
                           <th>Date Registered</th>
                           <th>Status</th>
                           <th>View</th>
-                          <th>Deactivate</th>
+                          <th>Action</th>
                         </tr>
                        </thead>
                         <?php

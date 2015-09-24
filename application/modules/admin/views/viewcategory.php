@@ -23,8 +23,7 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
-                  <div class="col-lg-5">
+                
 
                   <?php 
                            // categorydetails acquired from the controller admin, in the function called viewcategory()
@@ -34,17 +33,24 @@
                             for ($i=0; $i <= $key ; $i++) { 
                                 
                             ?>
-
+<div class="row">
                 <!-- The form that allows viewing and editing of category It uses admin.js into a function with form ID -> #categoryediting -->
                         <form id="categoryediting" name="categoryediting" role="form" enctype="multipart/form-data" method="POST">
-
+<div class="col-sm-3">
                         <div class="control-group">
                                 <label class="control-label">Category ID: <?php echo $data['catid']; ?></label>
 
+                                
+                               <div class="form-group image-profile">
+                                <img style="width:250px;height:250px;" src="<?php echo $data['catimage']; ?>" alt="Category pic">
+                               </div>
+                               </div>
+</div>
+                        <div class="col-sm-9">
                                 <div class="controls">
                                     <input name="editcategoryid" type="hidden"  value="<?php echo $data['catid']; ?>" class="span6 m-wrap form-control "/>
                                 </div>
-                            </div>
+                            
 
                             <div class="form-group">
                                 <label>Category Name</label>
@@ -79,17 +85,16 @@
                             <a href="<?php echo base_url(). 'index.php/admin/categories'?>" class="btn btn-warning">Back</a>
                             
                             <!-- <button type="reset" class="btn btn-warning">Reset Button</button> -->
-
+</div>
                         </form>
-
+</div>
                         <?php 
                              }
                          }
                         
                        }
                         ?>
-                  </div>
-                </div>
+                  
                 <!-- /.row -->
 
                

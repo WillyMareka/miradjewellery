@@ -516,8 +516,12 @@ class Stockmanager extends MY_Controller {
                 // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'stockmanager/viewcomment/'.$data['Comment ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/stockmanager/commentdetail/'.$data['Comment ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 
-                // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'stockmanager/commentupdate/commentdelete/'.$data['Comment ID'].'"><i class="fa fa-trash black"></i></td>';
-                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/stockmanager/commentupdate/commentdelete/'.$data['Comment ID'].'"><i class="fa fa-trash black"></i></td>';
+                if($data['Comment Status'] == 1){
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/admin/commentupdate/commentdelete/'.$data['Comment ID'].'"><i class="fa fa-trash black"></i></td>';
+               }else if($data['Comment Status'] == 0){
+               $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Activate Profile" href = "'.base_url().'index.php/admin/commentupdate/commentrestore/'.$data['Comment ID'].'"><i class="fa fa-recycle black"></i></td>';
+                }
+
                 $display .= '</tr>';
 
                 break;
@@ -1194,9 +1198,11 @@ class Stockmanager extends MY_Controller {
                 // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'stockmanager/viewproduct/'.$data['Product ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="View Profile" href = "'.base_url().'index.php/stockmanager/productdetail/'.$data['Product ID'].'"><i class="fa fa-eye black"></i></a></td>';
                 
-                // button below used for editing the specific category. Goes to stockmanager controller into function called catupdate(), passing the type of update and the category id as parameter
-                // $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'stockmanager/product_status/proddelete/'.$data['Product ID'].'"><i class="fa fa-trash black"></i></td>';
-                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/stockmanager/product_status/proddelete/'.$data['Product ID'].'"><i class="fa fa-trash black"></i></td>';
+               if($data['Product Status'] == 1){
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Deactivate Profile" href = "'.base_url().'index.php/admin/product_status/proddelete/'.$data['Product ID'].'"><i class="fa fa-trash black"></i></td>';
+               }else if($data['Product Status'] == 0){
+                $display .= '<td class="centered"><a data-toggle="tooltip" data-placement="bottom" title="Activate Profile" href = "'.base_url().'index.php/admin/product_status/prodrestore/'.$data['Product ID'].'"><i class="fa fa-recycle black"></i></td>';
+                }
                 $display .= '</tr>';
                 
 

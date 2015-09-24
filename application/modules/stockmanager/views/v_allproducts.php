@@ -36,12 +36,12 @@
                        <!-- The add button takes you to the admin controller, into the function addcategory() -->
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'stockmanager/addproduct'?>">Add <?php echo $admin_subtitle?></a> -->
                        <a class="left adminadd" href="<?php echo base_url(). 'index.php/stockmanager/addproduct'?>">Add <?php echo $admin_subtitle?></a>
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Export <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle right ">Download Products <span class="caret"></span></button>
                          <ul class="dropdown-menu">
-                           <!-- <li><a href="<?php echo base_url(). 'stockmanager/allproducts/pdf'?>">Save as PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'stockmanager/allproducts/excel'?>">Export to Excel</a></li> -->
-                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allproducts/pdf'?>">Save as PDF</a></li>
-                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allproducts/excel'?>">Export to Excel</a></li>
+                           <!-- <li><a href="<?php echo base_url(). 'stockmanager/allproducts/pdf'?>">Download as PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'stockmanager/allproducts/excel'?>">Download as Excel</a></li> -->
+                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allproducts/pdf'?>">Download as PDF</a></li>
+                           <li><a href="<?php echo base_url(). 'index.php/stockmanager/allproducts/excel'?>">Download as Excel</a></li>
                          </ul>
                        </div>
                      </div>
@@ -56,7 +56,7 @@
                           <th>Status</th>
                           <th>View</th>
                           <!-- <th>Edit</th> -->
-                          <th>Deactivate</th>
+                          <th>Action</th>
                         </tr>
                        </thead>
                         <?php

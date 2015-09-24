@@ -6,7 +6,7 @@
 					<div class="col-md-2 col-sm-6">
 						<h5>Information</h5>
 						<ul>
-							<li><a href="about.html">About Us</a></li>
+							<li><a href="<?php echo base_url().'index.php/home/about'?>">About Us</a></li>
 							<li><a href="#">Terms &amp; Conditions</a></li>
 						</ul>
 					</div>
@@ -23,18 +23,30 @@
 					<div class="col-md-2 col-sm-6">
 						<h5>Service</h5>
 						<ul>
-							<li><a href="contact.html">Contact Us</a></li>
-							<li><a href="#">Site Map</a></li>
-							
+							<li><a href="<?php echo base_url().'index.php/home/contact'?>">Contact Us</a></li>
+							<li><a href="<?php echo base_url().'index.php/home/getlocation'?>">Our Location</a></li>
 						</ul>
 					</div>
 				<!-- Customer Service Links Ends -->
 				<!-- Follow Us Links Starts -->
-					<div class="col-md-2 col-sm-6">
+					<div class="social col-md-2 col-sm-6">
 						<h5>Follow Us</h5>
 						<ul>
-							<li><a href="#">Facebook</a></li>
-							<li><a href="#">Twitter</a></li>
+							<li><a href="miradjewelleryfacebook">
+							<i class="fa fa-facebook-official fa-3x" style="margin-right:5px;" ></i>
+							<span class="hidden-sm hidden-xs" style="text-decoration:none;">
+								Facebook
+							</span>
+							</a>
+							</li>
+							<li>
+							<a href="miradjewellerytwitter">
+							<i class="fa fa-twitter-square fa-3x"></i>
+							<span class="hidden-sm hidden-xs">
+								Twitter
+							</span>
+							</a>
+							</li>
 						</ul>
 					</div>
 				<!-- Follow Us Links Ends -->
@@ -62,7 +74,7 @@
 			<div class="container">
 			<!-- Starts -->
 				<p class="pull-left">
-					&copy; 2015 Mirad Jewellery Stores.
+					&copy; <?php echo date('Y') ?> Mirad Jewellery Stores.
 				</p>
 			<!-- Ends -->
 			</div>

@@ -12,13 +12,13 @@
     <title>Admin</title>
 
 
-    <link rel="icon" type="image/x-icon" href="<?php echo base_url(). 'assets/fonts/jewel.ico'?>" />
-    <link href="<?php echo base_url(). 'assets/css/morris.css'?>" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="<?php echo assets_url.'fonts/jewel.ico'?>" />
+    <link href="<?php echo assets_url.'css/morris.css'?>" rel="stylesheet">
     <!-- <link href="<?php echo base_url(). 'assets/fonts/font-awesome/css/font-awesome.min.css'?>" rel="stylesheet" type="text/css"> -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(). 'assets/js/jquery-ui-1.11.4.custom/jquery-ui.min.css'?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(). 'assets/css/validationEngine.jquery.css'?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(). 'assets/sweetalert/lib/sweet-alert.css'?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(). 'assets/css/animate.css'?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo assets_url.'js/jquery-ui-1.11.4.custom/jquery-ui.min.css'?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo assets_url.'css/validationEngine.jquery.css'?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo assets_url.'sweetalert/lib/sweet-alert.css'?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo assets_url.'css/animate.css'?>">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
@@ -26,24 +26,24 @@
 
 
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(). 'assets/css/bootstrap.min.css'?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo assets_url.'css/bootstrap.min.css'?>">
     
     <!-- <link href="<?php echo base_url(); ?>assets/js/DataTables-1.10.2/css/data-table.css" rel="stylesheet" /> -->
 
-    <link href="<?php echo base_url(). 'assets/css/admin.css'?>" rel="stylesheet">
+    <link href="<?php echo assets_url.'css/admin.css'?>" rel="stylesheet">
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(). 'assets/js/jquery.js'?>"></script>
-    <script type="text/javascript" src="<?php echo base_url(). 'assets/js/jquery-2.1.3.min.js'?>"></script>
-   <script type="text/javascript" src="<?php echo base_url(). 'assets/js/jquery-ui-1.11.4.custom/jquery-ui.min.js'?>"></script>
+    <script src="<?php echo assets_url.'js/jquery.js'?>"></script>
+    <script type="text/javascript" src="<?php echo assets_url.'js/jquery-2.1.3.min.js'?>"></script>
+   <script type="text/javascript" src="<?php echo assets_url.'js/jquery-ui-1.11.4.custom/jquery-ui.min.js'?>"></script>
    <script type="text/javascript">$(document).ready(function(){base_url = '<?php echo base_url();?>'});</script>
-   <script type="text/javascript" charset="utf-8" src="<?php echo base_url(). 'assets/js/jquery.validate.js'?>"></script>
-   <script type="text/javascript" charset="utf-8" src="<?php echo base_url(). 'assets/sweetalert/lib/sweet-alert.js'?>"></script>
-   <script type="text/javascript" charset="utf-8" src="<?php echo base_url(). 'assets/js/jquery.validationEngine-en.js'?>"></script>
-   <script type="text/javascript" charset="utf-8" src="<?php echo base_url(). 'assets/js/jquery.validationEngine.js'?>"></script>
-   <script type="text/javascript" src="<?php echo base_url(). 'assets/js/scrollUp.min.js'?>"></script>
-   <script type="text/javascript" src="<?php echo base_url(). 'assets/js/bootstrap.min.js'?>"></script>
+   <script type="text/javascript" charset="utf-8" src="<?php echo assets_url.'js/jquery.validate.js'?>"></script>
+   <script type="text/javascript" charset="utf-8" src="<?php echo assets_url.'sweetalert/lib/sweet-alert.js'?>"></script>
+   <script type="text/javascript" charset="utf-8" src="<?php echo assets_url.'js/jquery.validationEngine-en.js'?>"></script>
+   <script type="text/javascript" charset="utf-8" src="<?php echo assets_url.'js/jquery.validationEngine.js'?>"></script>
+   <script type="text/javascript" src="<?php echo assets_url.'js/scrollUp.min.js'?>"></script>
+   <script type="text/javascript" src="<?php echo assets_url.'js/bootstrap.min.js'?>"></script>
 
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
@@ -60,7 +60,7 @@
    <!--<script src="<?php echo base_url(); ?>assets/js/DataTables-1.10.2/js/jquery.dataTables.js"></script>-->
    <!--<script src="<?php echo base_url(); ?>assets/js/DataTables-1.10.2/js/data-table.js"></script>-->
     
-   <script type="text/javascript" src="<?php echo base_url(). 'assets/js/admin.js'?>"></script>
+   <script type="text/javascript" src="<?php echo assets_url.'js/admin.js'?>"></script>
    
 
 </head>
@@ -69,7 +69,7 @@
 
     <div id="wrapper">
     <div class="admin-header">
-       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+       <nav class="navbar navbar-fixed-top admin-topnav" role="navigation">
           <?php 
                $this->load->view($admin_navbar);
           ?>

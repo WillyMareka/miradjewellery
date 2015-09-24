@@ -23,9 +23,7 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
-                  <div class="col-lg-5">
-
+               
                   <?php 
                            // categorydetails acquired from the controller admin, in the function called viewcategory()
                             foreach ($employeedetails as $key => $value) {
@@ -35,11 +33,15 @@
                             for ($i=0; $i <= $key ; $i++) { 
                                 
                             ?>
-
+<div class="row ">
+                           
+                            <div class="col-sm-3">
                        
                         <div class="form-group image-profile">
                                 <img style="width:250px;height:250px;" src="<?php echo $data['emp_picture']; ?>" alt="Profile pic">
                             </div>
+                            </div>
+                            <div class="col-sm-9">
                                 <label class="control-label">Employee ID: <?php echo $data['emp_id']; ?></label>
 <div>
                             <label class="control-label">Employee Name: <?php echo $data['emp_name']; ?></label></div><div>
@@ -88,8 +90,8 @@
                        }
                         ?>
 
-                        <a href="<?php echo base_url(). 'index.php/stockmanager/employees' ?>"><button>Back</button></a>
-                        <a href="<?php echo base_url().'index.php/stockmanager/viewemployee/'?><?php echo $data['emp_id']?>"><button>Update</button></a>
+                        <a href="<?php echo base_url(). 'index.php/stockmanager/employees' ?>"><button class="view-back">Back</button></a>
+                        <a href="<?php echo base_url().'index.php/stockmanager/viewemployee/'?><?php echo $data['emp_id']?>"><button class="view-update">Update</button></a>
                   </div>
                 </div>
                 <!-- /.row -->

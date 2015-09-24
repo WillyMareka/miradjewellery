@@ -68,11 +68,24 @@
 }
 
 .login_panel{
-	border:1px solid #000;
-	margin-top: 50px;
+	/*border:1px solid #000;*/
+	margin-top: 150px;
 	margin-bottom: 50px;
-	height:450px;
-	width:650px;
+	height:250px;
+	width:450px;
+}
+
+.btn-log{
+    color:#000000;
+    margin-top: 10px;
+    width:380px;
+}
+
+.log-info{
+    color: #7f8c8d;
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .log-footer{
@@ -97,4 +110,8 @@
 
 .right-footer{
     
+}
+
+.emplogin {
+width:380px;
 }

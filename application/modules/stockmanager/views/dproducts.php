@@ -36,7 +36,7 @@
                        <!-- The add button takes you to the admin controller, into the function addcategory() -->
                        <!-- <a class="left adminadd" href="<?php echo base_url(). 'stockmanager/addproduct'?>">Add <?php echo $admin_subtitle?></a> -->
                         <a class="left adminadd" href="<?php echo base_url(). 'index.php/stockmanager/addproduct'?>">Add <?php echo $admin_subtitle?></a> 
-                         <button data-toggle="dropdown" class="btn dropdown-toggle btn-warning right ">Export <span class="caret"></span></button>
+                         <button data-toggle="dropdown" class="btn dropdown-toggle right ">Download Deactivated Products  <span class="caret"></span></button>
                          <ul class="dropdown-menu">
                           <!--  <li><a href="<?php echo base_url(). 'stockmanager/allproducts/inactive/pdf'?>">Save as PDF</a></li>
                            <li><a href="<?php echo base_url(). 'stockmanager/allproducts/inactive/excel'?>">Export to Excel</a></li> -->

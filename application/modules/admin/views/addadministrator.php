@@ -15,7 +15,7 @@
                                    <a class="crumbs" href="<?php echo base_url(). 'admin/employees'?>">Employee</a> > 
                                    <a class="crumbs" href="<?php echo base_url(). 'admin/addemployee'?>"><?php echo $admin_subtitle?></a> -->
 
-                                  <a class="crumbs" href="<?php echo base_url(). 'index.php/admin/dashboard'?>">Manager Dashboard</a> > 
+                                  <a class="crumbs" href="<?php echo base_url(). 'index.php/admin'?>">Manager Dashboard</a> > 
                                    <a class="crumbs" href="<?php echo base_url(). 'index.php/admin/employees'?>">Employee</a> > 
                                    <a class="crumbs" href="<?php echo base_url(). 'index.php/admin/addemployee'?>"><?php echo $admin_subtitle?></a>
                             </li>

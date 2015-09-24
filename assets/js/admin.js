@@ -80,14 +80,15 @@ $(document).ready(function(){
            cache: false,
            contentType: false,
            processData: false,
+           dataType: "json",
            success: function(data){
                // ....After successful registration, then....//
-              
-              swal({   title: "Category Registration",   text: "Category has been registered",   timer: 3000 });
+              $("#formaddcategory")[0].reset();
+              swal({   title: data.subject,   text: data.message,   timer: 1000 });
               // pop up for a successful registration 
 
            },error: function(data){
-              swal({   title: "Error Registration",   text: "Category has not been registered",   timer: 3000 });
+              swal({   title: data.subject,   text: data.message,   timer: 1000 });
            }
  
          });
@@ -115,8 +116,8 @@ $(document).ready(function(){
           // takes the data into the admin controller, into a function called categoryregistration()
          $.ajax({
            type: "POST",
-            url: base_url + 'stockmanager/addnewproduct',
-           // url: base_url + 'index.php/stockmanager/addnewproduct',
+           // url: base_url + 'stockmanager/addnewproduct',
+            url: base_url + 'index.php/stockmanager/addnewproduct',
            data: formData,
            async: false,
            cache: false,
@@ -124,8 +125,8 @@ $(document).ready(function(){
            processData: false,
            success: function(data){
                // ....After successful registration, then....//
-              
-              swal({   title: "Product Registration",   text: "Product has been registered",   timer: 3000 });
+              $("#formaddproduct")[0].reset();
+              swal({   title: "Product Registration",   text: "Product has been registered",   timer: 1000 });
               // pop up for a successful registration 
 
            }
@@ -160,7 +161,7 @@ $(document).ready(function(){
            success: function(data){
                // ....After successful registration, then....//
               
-              swal({   title: "Product Editing",   text: "Product has been editing",   timer: 3000 });
+              swal({   title: "Product Editing",   text: "Product has been editing",   timer: 1000 });
               // pop up for a successful registration 
 
            }
@@ -193,8 +194,8 @@ $(document).ready(function(){
            processData: false,
            success: function(data){
                // ....After successful registration, then....//
-              
-              swal({   title: "Employee Registration",   text: "Employee has been registered",   timer: 3000 });
+              $("#formaddadministrator")[0].reset();
+              swal({   title: "Employee Registration",   text: "Employee has been registered",   timer: 1000 });
               // pop up for a successful registration 
 
            }
@@ -230,7 +231,7 @@ $(document).ready(function(){
            success: function(data){
                // ....After successful editing, then....//
               
-              swal({   title: "Category Editing",   text: "Category has been updated",   timer: 3000 });
+              swal({   title: "Category Editing",   text: "Category has been updated",   timer: 1000 });
               // pop up for a successful registration 
               
              
@@ -252,8 +253,8 @@ $(document).ready(function(){
  
          $.ajax({
            type: "POST",
-           url: base_url + 'admin/editorder',
-           // url: base_url + 'index.php/admin/editorder',
+           //url: base_url + 'admin/editorder',
+            url: base_url + 'index.php/admin/editorder',
            data: formData,
            async: false,
            cache: false,
@@ -261,7 +262,7 @@ $(document).ready(function(){
            processData: false,
            success: function(data){
                         
-              swal({   title: "Order Editing",   text: "Order has been updated",   timer: 3000 });
+              swal({   title: "Order Editing",   text: "Order has been updated",   timer: 1000 });
  
            }
  
@@ -288,7 +289,7 @@ $(document).ready(function(){
            processData: false,
            success: function(data){
                         
-              swal({   title: "Comment Editing",   text: "Comment has been updated",   timer: 3000 });
+              swal({   title: "Comment Editing",   text: "Comment has been updated",   timer: 1000 });
  
            }
  
@@ -322,7 +323,7 @@ $(document).ready(function(){
            success: function(data){
                // ....After successful editing, then....//
               
-              swal({   title: "Employee Editing",   text: "Employee has been updated",   timer: 3000 });
+              swal({   title: "Employee Editing",   text: "Employee has been updated",   timer: 1000 });
               // pop up for a successful registration 
               
              
@@ -359,7 +360,7 @@ $(document).ready(function(){
            success: function(data){
               
               
-              swal({   title: "Client Editing",   text: "Client has been updated",   timer: 3000 });
+              swal({   title: "Client Editing",   text: "Client has been updated",   timer: 1000 });
            
               
              
